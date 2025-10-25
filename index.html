@@ -1,497 +1,920 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Santasa Counselling - Mental Health & Wellness</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-     
+    <title>Santasa Counselling - Emotional Wellness</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Font (Inter & DM Serif Display) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #0f4c81; /* Deep Blue */
+            --color-primary-hover: #0d426a;
+            --color-accent: #add8e6; /* Soft Lilac */
+            --bg-light: #f8f9fa; /* Very light gray */
+            --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e9eef5 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white; /* Simpler background */
+            color: #1e293b;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--color-primary);
+        }
+
+        /* Smooth fade-up animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-up.animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(15, 76, 129, 0.3);
+        }
+        .btn-outline {
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            transition: all 0.3s ease;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+        .btn-outline:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+         .cover {
+            /* min-height: 100vh; */
+            background: linear-gradient(120deg, #b7b6e4, #e2f0ff, #fff8f0);
+            color: #051d40;
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 0px;
+            padding-top: 100px;
+        }
+
+        .cover-content{
+            /* max-width: 700px; */
+            margin: 0 auto;
+            /* padding: 2rem; */
+            background-image: url(cover.jpg.png); /* Placeholder for cover.jpg.png */
+            background-position: center;
+            background-size: cover;
+            width: 948px;
+            height: 500px;
+        }
+        /* Header */
+        header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255,255,255,0.9);
+        }
+
+        /* Hero gradient background */
+        .hero-bg {
+            background: linear-gradient(120deg, #b7b6e4, #e2f0ff, #fff8f0);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Footer wave */
+        .footer-wave {
+            background: url('https://svgshare.com/i/14yG.svg') no-repeat center top;
+            background-size: cover;
+        }
+        
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+        
+        /* Custom slow pulse animation for service icons */
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: .7; transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* FAQ Dropdown Styles */
+        .faq-answer {
+            transition: max-height 0.3s ease-out, padding-top 0.3s ease-out, padding-bottom 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        .faq-answer.open {
+            max-height: 1000px; /* Large enough to fit content */
+            padding-top: 1.5rem !important; /* Tailwind's py-6 */
+            padding-bottom: 1.5rem !important; /* Tailwind's py-6 */
+        }
+    </style>
 </head>
-<body>
-        <!-- Popup Overlay -->
-        <div class="popup-overlay" id="contactPopup">
-            <div class="popup-content">
-                <span class="popup-close" id="closePopup">&times;</span>
-                <h2 class="popup-title">Welcome to Santasa Counselling</h2>
-                <p class="popup-text">We're here to support you and your family on your journey to emotional well-being. Reach out today to learn more about our services.</p>
-                <a href="https://forms.gle/wqYCx9YySNCDgji9A" class="popup-button" id="contactUsBtn">Contact Us</a>
+<body class="bg-white text-gray-800">
+
+    <!-- Popup Overlay -->
+    <div id="contactPopup" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 opacity-0 invisible transition-opacity duration-300">
+        <div class="bg-white p-8 md:p-10 rounded-xl shadow-2xl max-w-md w-full text-center transform scale-95 transition-transform duration-300 relative">
+            <button id="closePopup" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold text-[var(--color-primary)] mb-4">Welcome to Santasa Counselling</h2>
+            <p class="text-gray-600 mb-6">We're here to support you and your family on your journey to emotional well-being. Reach out today to learn more.</p>
+            <a href="https://forms.gle/wqYCx9YySNCDgji9A" target="_blank" class="inline-block btn-primary py-3 px-8">
+                Contact Us
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full z-40">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="text-2xl font-bold text-[var(--color-primary)]">
+                    Santasa Counselling
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-5">
+                    <a href="#home" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">About</a>
+                    <a href="#certificates" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Certificates</a>
+                    <a href="#achievements" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Achievements</a>
+                    <a href="#approach" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Approach</a>
+                    <a href="#services" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Services</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Testimonials</a>
+                    <a href="#faq" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">FAQ's</a>
+                    <a href="#resources" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Resources</a>
+                    <a href="#contact" class="text-gray-600 hover:text-[var(--color-primary)] font-medium py-2">Contact</a>
+                </nav>
+                
+                <!-- Mobile Nav Toggle -->
+                <button id="mobile-nav-toggle" class="md:hidden text-2xl text-gray-700">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
         
-        <header>
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <h1>Santasa Counselling</h1>
-                </a>
-                <!-- <button class="mobile-nav-toggle" id="mobile-nav-toggle">☰</button> -->
-                <nav id="nav-menu">
-                    <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#approach">Approach</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#faq">FAQ's</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-    
-    
-    
-    <section class="cover">
+        <!-- Mobile Navigation Menu -->
+        <nav id="nav-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <a href="#home" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Home</a>
+            <a href="#about" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">About</a>
+            <a href="#certificates" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Certificates</a>
+            <a href="#achievements" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Achievements</a>
+            <a href="#approach" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Approach</a>
+            <a href="#services" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Services</a>
+            <a href="#testimonials" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Testimonials</a>
+            <a href="#faq" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">FAQ's</a>
+            <a href="#resources" class="block py-3 px-6 text-gray-700 hover:bg-teal-50 border-b">Resources</a>
+            <a href="#contact" class="block py-3 px-6 text-gray-700 hover:bg-teal-50">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- <section class="cover">
         <div class="cover-content">
         </div>
-    </section>
-    
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Supporting Families & Nurturing Growth</h2>
-            <p>At Santasa Counselling, we provide compassionate and professional mental health services to help you thrive in every aspect of life.</p>
-            <a href="https://forms.gle/VX7N8kGi9B6ARrMi6" class="btn">Book You First Session</a>
-        </div>
-    </section>
+        </section> -->
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Welcome to Santasa Counselling</h2>
-                <p>Santasa Counselling offers comprehensive support in navigating the complexities of family
-                    dynamics through Family and Parent-Child Counselling. It focuses on
-                    building strong, healthy relationships by fostering communication, understanding, and empathy
-                    within the family unit. Santasa helps parents better understand their children’s emotional and
-                    psychological needs while guiding children to communicate effectively with their parents. This
-                    holistic approach aims to create a nurturing environment where both parents and children can
-                    grow together, leading to long-term emotional well-being and stronger familial bonds. Santasa
-                    Counselling Services is dedicated to enhancing the emotional and mental well-being of families.
-                    Offering of services such as Family and Parent-Child Counselling, Santasa provides tailored support for each unique
-                    family situation. The goal is to help individuals navigate challenges, improve communication,
-                    and foster healthier relationships within the family. With a compassionate and professional
-                    approach, Santasa aims to create a positive, nurturing environment where families can thrive
-                    emotionally and build stronger connections.</p>
-            </div>
-            <div class="section-title" id="approach">
-                <h2>Our Approach</h2>
-                <p> At Santasa Counselling, our approach to counselling is rooted in empathy, understanding, and collaboration. We believe that every family, parent, and child is unique, which is why we tailor our counselling sessions to meet individual needs. Our process is client-centered, focusing on creating a safe, non-judgmental space where clients can openly share their thoughts and feelings. We use evidence-based therapeutic techniques to guide families, parents, and children toward improved communication, emotional resilience, and personal growth. Our holistic approach integrates emotional, psychological, and relational aspects to promote healing and lasting positive change.
-                She brings a thoughtful blend of structure, empathy, and insight to every session. Her work is grounded in a client-centred approach, ensuring that each child and family is met with respect, understanding, and personalised care.
-
-                At Santasa, she uses a range of effective counselling techniques tailored to each individual’s needs. These include Cognitive Behavioural Techniques, Solution-Focused Techniques, Art and Play-Based Techniques, Narrative Techniques and Family-Centered Techniques, along with mindfulness practices, emotional regulation tools, and behavioural strategies. She also provides parent coaching to strengthen communication and connection within families.
-                    
-                In addition to counselling, she works as a freelance tutor, helping young learners (primary level) improve their communication skills in English and Hindi through interactive, personalized teaching.
-                    
-                She is passionate about creating a safe and supportive environment where children and families feel heard, respected, and empowered.
-                At Santasa, we aim to empower individuals and families to strengthen their relationships, overcome challenges, and build a foundation for emotional well-being.</p>
-            </div>
-
-            <div class="section-title" id="approach">
-                <h2>Our Vision</h2>
-                <p>The vision of Santasa Counselling is to empower families, parents, and children by fostering
-                    healthy and resilient relationships built on communication, empathy, and emotional well-being.
-                    Through Family and Parent-Child Counselling, Santasa aims to provide a supportive space
-                    where families can navigate challenges, strengthen bonds, and develop a deeper understanding of
-                    each other. The goal is to create a society where families are emotionally connected, parents are
-                    well-equipped to guide their children, and children are nurtured in a way that promotes their
-                    overall well-being and personal growth. Santasa envisions a future where every family thrives in
-                    a balanced and harmonious environment, contributing to stronger communities.</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="Profile.jpg" alt="Santasa Counselling Team">
-                </div>
-                <div class="about-text">
-                    <h3>About the Counsellor</h3>
-                    <p>Keerthi B Nadig is an accomplished Emotional Wellness Counsellor, Family Counsellor and Parent-Child Counsellor. She has a foundation in law (BA LLB) with Advanced Certification in Counselling and a Diploma in Child Psychology. She bring a thoughtful and compassionate approach to every session.
-                        Her journey began with a love for teaching – she has been a home tutor for English and Hindi at the primary level for years. That journey deepened as she witnessed the emotional needs of children and families, inspiring her to specialise in the emotional and relational aspects of parenting and childhood development.
-                        At Santasa Counselling, she offer a safe, empathetic space where parents and children can connect, heal, and grow. Her experience
-                        extends to working with both children and parents, offering guidance that fosters healthier
-                        communication and emotional well-being.
-                        She uses evidence-based therapeutic techniques to help clients develop coping
-                        strategies, enhance emotional intelligence, and strengthen interpersonal relationships. Her
-                        counselling services are focused on empowering families, guiding parents to understand their
-                        children's emotional and developmental needs, and building stronger parent- child connections.
-                        This unique combination of
-                        counselling and teaching allows her to offer holistic support that addresses the academic,
-                        emotional, and psychological needs of children. Whether helping students improve their
-                        academic performance or guiding parents through the complexities of parenting, Keerthi is
-                        committed to nurturing personal growth and fostering positive changes in the lives of her clients.
-                        Through her compassionate, personalized counselling she supports families and children in
-                        navigating challenges and creating healthier, more fulfilling relationships.</p>
-                    <!-- <a href="#team" class="btn">Meet Our Team</a> -->
-                </div>
-            
-            </div>
-        </div>
-    </section>
-    
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Comprehensive mental health services tailored to your needs</p>
-            </div>
-            <div class="services-container">
-
-
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Emotional Wellness Counselling</h3>
-                        <li>Helping individuals understand, express, and manage their emotions through empathetic listening, reflection, and emotional regulation techniques.</li>
-                        <li>Equipping clients with practical tools to handle stress, anxiety, and life challenges using mindfulness, journaling, and positive coping strategies.</li>
-                        <li>Improving communication, building self-esteem, and guiding healthier relationships — both with self and others — during transitions or personal struggles.</li>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Family Counselling</h3>
-                        <li>Aims to improve communication, resolve conflicts, and address dysfunctional family patterns.
-                        <li>Helps families navigate life transitions such as divorce or relocation, fostering healthier and more supportive relationships.</li>
-                        <li>Focuses on building problem-solving skills and emotional resilience within the family unit.</li>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-content" id="Parenting Challenges">
-                        <h3>Parent-Child Counselling</h3>
-                        <li>Focuses on strengthening the unique bond between parents and children, addressing attachment, communication, and conflict resolution.</li>
-                        <li>Helps parents guide their children through different life stages using effective communication, discipline, and emotional support.</li>
-                        <li>The goal is to improve parent- child dynamics by offering strategies for open dialogue, setting healthy boundaries, and teaching positive parenting techniques.</li>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    
-    <section class="testimonial-section" id="testimonials">
-        <div class="section-title">
-            <h2>Client Testimonials</h2>
-            <p>Hear from those who have transformed their lives with our support</p>
-        </div>
-    
-        <div class="carousel">
-            <button class="prev"><i class="fas fa-chevron-left"></i></button>
-            
-            <div class="testimonial-card">
-                <div class="quote-icon">
-                    <i class="fas fa-quote-left"></i>
-                </div>
-                <p class="testimonial-text">
-                    Santasa counselling has truly transformed my relationship with my children. As a school teacher, I thought I understood kids, but I struggled with my own. The parent-child counselling sessions helped me bridge that gap. The counsellor was patient, empathetic, and offered practical solutions. Today, I feel more connected and equipped to handle emotional challenges at home.
-                </p>
-                <p class="author"><strong>Radhika Sharma</strong></p>
-                <p class="info"><em>School Teacher</em></p>
-            </div>
-    
-            <button class="next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    
-        <div class="pagination">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-    </section>
-
-    
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our services</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <p>What is counselling?</p>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="short-text">
-                            Counselling is a professional and confidential process that involves a trained counsellor working
-                            with individuals, couples, or families to help them explore and address emotional, psychological,
-                            and relational challenges. It provides...
-                        </p>
-                        <p class="full-text hidden">
-                            Counselling is a professional and confidential process that involves a trained counsellor working
-                            with individuals, couples, or families to help them explore and address emotional, psychological,
-                            and relational challenges. It provides a safe, non-judgmental space where people can talk openly
-                            about their thoughts, feelings, and concerns. Through active listening, empathy, and therapeutic
-                            techniques, counselling aims to promote self-awareness, emotional healing, and personal growth.
-                            The goal of counselling is to help individuals gain clarity, develop coping strategies, improve
-                            communication, and enhance their overall well-being, enabling them to navigate life's difficulties more effectively.
-                        </p>
-                        <button class="read-more-btn">Read More</button>
-                    </div>
-                </div>    
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <p>How does it work?</p>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="short-text">
-                            Counselling works through a structured and collaborative process between the counsellor and the
-                            client. <br>Here's how it typically works:<br><br>
-                            <b>Initial Assessment:</b> The process begins with an initial consultation where the counsellor
-                            gathers information about the client's concerns, background, and goals. This helps the
-                            counsellor understand the issues at hand and create a personalized plan for the sessions.<br>
-                            <b>Establishing a Safe Space:</b> The counsellor provides a confidential, non-judgmental
-                            environment where the client feels safe to express their thoughts, emotions, and
-                            experiences freely. Trust is built through active listening, empathy, and respect...<br>
-                        </p>
-                        <p class="full-text hidden">
-                            Counselling works through a structured and collaborative process between the counsellor and the
-                            client. <br>Here's how it typically works:<br><br>
-                            <b>Initial Assessment:</b> The process begins with an initial consultation where the counsellor
-                            gathers information about the client's concerns, background, and goals. This helps the
-                            counsellor understand the issues at hand and create a personalized plan for the sessions.<br>
-                            <b>Establishing a Safe Space:</b> The counsellor provides a confidential, non-judgmental
-                            environment where the client feels safe to express their thoughts, emotions, and
-                            experiences freely. Trust is built through active listening, empathy, and respect.<br>
-                            <b>Exploring Concerns:</b> During sessions, the client shares their challenges, and the
-                            counsellor helps them explore their emotions, thoughts, and behaviors. This exploration
-                            helps the client gain self-awareness and insight into the root causes of their problems.<br>
-                            <b>Setting Goals:</b> Together, the counsellor and client establish realistic and achievable goals
-                            for the counselling process. These goals may include emotional healing, better coping
-                            strategies, improved communication, or resolving conflicts.<br>
-                            <b>Using Therapeutic Techniques:</b> The counsellor applies evidence-based therapeutic
-                            approaches, such as Cognitive Behavioral Therapy (CBT) or family therapy, depending
-                            on the client's needs. These techniques help the client develop skills to manage stress,
-                            process emotions, change negative thought patterns, and improve relationships.<br>
-                            <b>Progress and Reflection:</b> As sessions continue, the client reflects on their progress, and
-                            the counsellor provides guidance and feedback. Adjustments may be made to the
-                            approach as needed to ensure the client is making meaningful progress.<br>
-                            <b>Closure:</b> Once the client has reached their goals or feels empowered to manage their
-                            challenges independently, the counselling process concludes. However, follow-up
-                            sessions may be offered to support ongoing growth or address new concerns.<br><br>
-                            Overall, <i>counselling is a journey of self-discovery, emotional support, and personal development
-                            aimed at improving mental and emotional well-being.</i></p>
-                        <button class="read-more-btn">Read More</button>
-                    </div>
-                </div>    
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <p>How can Santasa help?</p>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="short-text">
-                            Santasa Counselling provides empathetic and non-judgemental approach. The counsellor is Qualified in Advanced Counselling & Child Psychology. She takes flexible sessions online or in-person. She helps families, parents, and children in various ways by providing
-                            professional support and guidance to navigate emotional, relational, and psychological
-                            challenges. <br>Here’s how Santasa Counselling can make a difference:<br><br>
-                            <b>Strengthening Family Bonds:</b> Through family counselling, Santasa helps families
-                            improve communication, resolve conflicts, and develop healthier relationships. It creates
-                            a safe space for family members to express their concerns and understand each other's
-                            perspectives, leading to stronger emotional connections...<br>
-                            </p>
-                        <p class="full-text hidden">
-                            Santasa Counselling can help families, parents, and children in various ways by providing
-                            professional support and guidance to navigate emotional, relational, and psychological
-                            challenges. <br>Here’s how Santasa Counselling can make a difference:<br><br>
-                            <b>Strengthening Family Bonds:</b> Through family counselling, Santasa helps families
-                            improve communication, resolve conflicts, and develop healthier relationships. It creates
-                            a safe space for family members to express their concerns and understand each other's
-                            perspectives, leading to stronger emotional connections.<br>
-                            <b>Parenting Support:</b> In parent counselling, Santasa equips parents with effective
-                            parenting strategies to better understand and support their children’s emotional,
-                            psychological, and developmental needs. It helps parents handle challenges like
-                            behavioral issues, stress, and communication gaps with their children.<br>
-                            <b>Child Development and Emotional Well-Being:</b> Child counselling services at Santasa
-                            focus on helping children manage their emotions, cope with stress, and develop healthy
-                            self-esteem. Techniques like Play Therapy and Cognitive Behavioral Therapy (CBT) can
-                            help children express their feelings and overcome issues like anxiety, depression, or
-                            academic challenges.<br>
-                            <b>Resolving Parent- Child Conflicts:</b> Santasa’s Family and Parent-Child Counselling
-                            facilitates improved communication between parents and children, helping both parties
-                            understand each other's needs and emotions. It helps bridge generational gaps and fosters
-                            a positive, nurturing relationship.<br>
-                            <b>Coping with Life Changes:</b> Whether it’s dealing with major life transitions such as
-                            divorce, relocation, or the loss of a loved one, Santasa Counselling provides emotional
-                            support and coping strategies to help individuals and families adapt to changes in a
-                            healthy way.<br>
-                            <b>Improving Mental Health:</b> Santasa offers support for individuals struggling with
-                            anxiety, stress, depression, or low self-esteem. Counsellors provide therapeutic
-                            techniques, such as mindfulness and CBT, to help clients manage negative emotions,
-                            build resilience, and improve their mental well-being.<br>
-                            <b>Guidance for Personal Growth:</b> Counselling at Santasa promotes self-awareness and
-                            personal development, helping clients identify their strengths, work on areas of
-                            improvement, and set personal or family goals for long-term emotional health and
-                            happiness.<br><br>
-                            Through personalized and compassionate care, Santasa Counselling helps individuals and
-                            families overcome challenges, build stronger relationships, and achieve a balanced, emotionally
-                            healthy life.</p>
-                        <button class="read-more-btn">Read More</button>
-                    </div>
+        <!-- Hero Section -->
+        <!-- Added pt-20 to account for fixed header height (h-20) -->
+        <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12 px-4">
+            <div class="container mx-auto grid md:grid-cols-2 gap-8 items-center">
+                <!-- Cover Image -->
+                <div class="cover-content w-full h-[300px] md:h-[500px]">
+                    <!-- Background image applied via CSS -->
                 </div>
                 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <p>When to choose counselling?</p>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="short-text">
-                            Counselling can be beneficial in many situations, especially when you feel overwhelmed, stuck,
-                        or unable to manage challenges on your own. Here are some instances when you may choose to
-                        seek counselling:<br><br>
-                        <b>Emotional Distress:</b> If you are experiencing overwhelming emotions such as anxiety,
-                                depression, anger, or sadness that interfere with daily life, counselling can provide relief
-                                and coping strategies.<br>
-                        <b>Relationship Issues:</b> If there are ongoing conflicts, communication problems, or strained
-                                relationships within your family, with your partner, or with your children, counselling
-                                can help resolve these issues and improve connections...<br>
-                            </p>
-                        <p class="full-text hidden">
-                            Counselling can be beneficial in many situations, especially when you feel overwhelmed, stuck,
-                            or unable to manage challenges on your own. Here are some instances when you may choose to
-                            seek counselling:<br><br>
-                        <b>Emotional Distress:</b> If you are experiencing overwhelming emotions such as anxiety,
-                                depression, anger, or sadness that interfere with daily life, counselling can provide relief
-                                and coping strategies.<br>
-                        <b>Relationship Issues:</b> If there are ongoing conflicts, communication problems, or strained
-                                relationships within your family, with your partner, or with your children, counselling
-                                can help resolve these issues and improve connections.<br>
-                            <b>Parenting Challenges:</b> When parenting becomes stressful due to behavioral issues in
-                                children, struggles with discipline, or misunderstandings, parent counselling can provide
-                                tools to manage and strengthen the parent- child relationship.<br>
-                        <b>Life Transitions:</b> Major life changes like divorce, relocation, career shifts, or the loss of
-                                a loved one can be difficult to cope with. Counselling offers support during these
-                                transitions to help you adjust emotionally and mentally.<br>
-                        <b>Stress Management:</b> If you feel overwhelmed by stress related to work, school, or
-                                personal life, counselling can help you develop healthy coping mechanisms and reduce
-                                stress levels.<br>
-                        <b>Self-Esteem and Confidence Issues:</b> If you struggle with low self-esteem, lack of
-                                confidence, or a negative self-image, counselling can help you build self-awareness, self acceptance, and personal growth.<br>
-                        <b>Mental Health Concerns:</b> If you are experiencing symptoms of anxiety, depression, or
-                                any other mental health condition, counselling can provide therapeutic support, coping
-                                strategies, and guidance for recovery.<br>
-                        <b>Behavioral Changes in Children:</b> When children display sudden changes in behavior,
-                                such as withdrawal, aggression, or poor performance in school, child counselling can
-                                help identify the root causes and provide solutions.<br>
-                        <b>Trauma or Grief:</b> If you’ve experienced trauma, loss, or a difficult event, counselling
-                                can help you process your emotions, heal, and find ways to move forward.<br>
-                        <b>Lack of Clarity or Purpose:</b> If you feel lost, unmotivated, or unsure about your direction
-                                in life, counselling can guide you in exploring your values, setting goals, and finding
-                                clarity.<br>
-                        Choosing counselling is a proactive step toward mental and emotional well-being. It offers a safe
-                        space to discuss your challenges, gain insight, and develop strategies to lead a more fulfilling
-                        life.</p>
-                        <button class="read-more-btn">Read More</button>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <p>What to expect from counselling?</p>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="short-text">
-                            When you begin counselling, there are several things you can expect that will help you on your
-                            journey toward emotional and mental well-being:<br><br>
-                            <b>A Safe and Confidential Space:</b> Counselling provides a non-judgmental, safe, and
-                            confidential environment where you can openly share your thoughts, feelings, and
-                            concerns. You can expect your counsellor to listen to you with empathy and respect,
-                            creating a trusting atmosphere.<br>
-                            <b>Active Listening and Understanding:</b> Your counsellor will actively listen to your
-                            experiences without making assumptions or judgments. They will help you explore your
-                            emotions, thoughts, and behaviors, offering insights to help you understand yourself
-                            better...<br>
-                            </p>
-                        <p class="full-text hidden">
-                            When you begin counselling, there are several things you can expect that will help you on your
-                            journey toward emotional and mental well-being:<br><br>
-                            <b>A Safe and Confidential Space:</b> Counselling provides a non-judgmental, safe, and
-                            confidential environment where you can openly share your thoughts, feelings, and
-                            concerns. You can expect your counsellor to listen to you with empathy and respect,
-                            creating a trusting atmosphere.<br>
-                            <b>Active Listening and Understanding:</b> Your counsellor will actively listen to your
-                            experiences without making assumptions or judgments. They will help you explore your
-                            emotions, thoughts, and behaviors, offering insights to help you understand yourself
-                            better.<br>
-                            <b>Personalized Approach:</b> Counselling is tailored to your individual needs. The counsellor
-                            will work with you to identify your challenges, set goals, and create a plan of action that
-                            suits your situation. Different therapeutic techniques may be used depending on what is
-                            most effective for you.<br>
-                            <b>Goal Setting:</b> In collaboration with your counsellor, you will establish clear, achievable
-                            goals for your counselling sessions. These goals may relate to improving emotional
-                            health, addressing relationship issues, or overcoming specific challenges like anxiety,
-                            stress, or trauma.<br>
-                            <b>Therapeutic Techniques:</b> Your counsellor may introduce various evidence-based
-                            therapeutic techniques, such as Cognitive Behavioral Therapy (CBT), mindfulness, or
-                            family therapy, depending on your needs. These tools will help you develop healthier
-                            coping mechanisms and address your emotional and psychological concerns.<br>
-                            <b>Exploring Difficult Emotions:</b> Counselling may involve confronting uncomfortable or
-                            difficult emotions and experiences. This is a normal part of the healing process, and the
-                            counsellor will guide and support you as you navigate through these feelings.<br>
-                            <b>Self-Awareness and Insight:</b> As you progress in counselling, you can expect to gain
-                            deeper self-awareness and insights into the root causes of your challenges. This can
-                            empower you to make positive changes in your thoughts, behaviors, and relationships.<br>
-                            <b>Skill Building:</b> Counselling can help you develop practical skills to manage stress,
-                            anxiety, conflict, or emotional regulation. You will learn techniques such as better
-                            communication, problem-solving, and relaxation methods that you can apply in your
-                            everyday life.<br>
-                            <b>Progress and Reflection:</b> Over time, you’ll be able to reflect on your progress, and the
-                            counsellor will help you assess how you’re meeting your goals. This reflection helps to
-                            track positive changes and allows you to make adjustments in your approach, if
-                            necessary.<br>
-                            <b>Empowerment and Growth:</b> Ultimately, counselling is about helping you feel
-                            empowered to manage your challenges and lead a healthier, more balanced life. It is a
-                            journey toward personal growth, where you will build resilience, confidence, and a
-                            deeper sense of well-being.<br><br>
-                            While the process may take time, you can expect to leave counselling with a greater
-                            understanding of yourself, improved emotional regulation, and the tools to handle future
-                            challenges effectively.</p>
-                        <button class="read-more-btn">Read More</button>
-                    </div>
-                </div>
-
+                <!-- Hero Text -->
+                <!-- Adjusted text alignment and spacing for better balance -->
+                <div class="max-w-xl py-12 text-center md:text-left mx-auto md:mx-0 md:ml-auto md:pr-8">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Supporting Families & Nurturing Growth</h2>
+                    <p class="text-lg md:text-xl text-slate-700 mb-10 font-light">At Santasa Counselling, we provide compassionate and professional emotional wellness services to help you thrive in every aspect of life.</p>
+                    <a href="https://forms.gle/VX7N8kGi9B6ARrMi6" target="_blank" class="btn-primary py-3 px-8 text-lg">
+                        Book Your First Session
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    
-    
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Reach out to schedule a consultation or learn more about our services</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <div class="display">
-                        <div class="contact-icon"><a href="https://www.instagram.com/santasacounsellingg/"><i class="fa-brands fa-instagram"></i></a></div>
-                        <div class="contact-icon"><a href="mailto:therapywithkeerthi@gmail.com"><i class="fa-regular fa-envelope"></i></a></div>
-                        <div class="contact-icon"><a href="tel:6366658694"><i class="fa-solid fa-phone"></i></a></div>
-                        <div class="contact-icon"><a href="https://santasacounsellingg.blogspot.com/"><i class="fa-brands fa-blogger"></i></a></div>
-                        <div class="contact-icon"><a href="https://www.youtube.com/@santasacounselling"><i class="fa-brands fa-youtube"></i></a></div>
-                        <div class="contact-icon"><a href="https://www.linkedin.com/in/keerthi-b-nadig-ab0856178/"><i class="fa-brands fa-linkedin-in"></i></a></div>
-                    </div>
-                    <div>
-                        <p>Phone:-6366658694</p>
-                        <p>Location:- Bangalore, Karnataka</p>
-                    </div>
+        </section>
+
+        <!-- Welcome Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="about" class="py-20 md:py-28 bg-white fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Welcome to Santasa Counselling</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">“Santasa” means Joy, and that is the heart of everything, and we intend to bring joy to everyone's life. At Santasa Counselling, we believe that true joy and balance come from understanding ourselves and our relationships with empathy and openness. Life often brings moments that feel overwhelming, confusing, or emotionally draining — and during such times, having a safe, non-judgmental space to talk can make all the difference.
+Our sessions are non-clinical, focusing on emotional well-being, relationship harmony, and personal growth. Whether you’re navigating parenting challenges, relationship stress, or life transitions, academic pressures at school or college, we’re here to walk beside you — with warmth, respect, and compassion.</p>
+                </div>
                 
-                    
-                    
+                <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                    <!-- About the Counsellor Image -->
+                    <div class="mb-14 lg:mb-0">
+                        <!-- Using a placeholder as the original image path is local -->
+                        <img src="IMG_20250817_213237 (1).jpg" alt="Keerthi B Nadig, Counsellor" class="rounded-xl shadow-2xl w-full h-auto object-cover aspect-square">
                     </div>
-                    <!-- <div class="contact-details">
-                        <div class="contact-item"> -->
-                            
-                            
+                    
+                    <!-- About the Counsellor Text -->
+                    <div class="text-gray-700 space-y-5">
+                        <h3 class="text-2xl font-semibold mb-3">About the Counsellor</h3>
+                        <p>She holds a Bachelor’s Degree in Law (BA LLB), an Advanced Certification in Counselling, and a Diploma in Child Psychology. She is a Certified Emotional Wellness Counsellor. She helps individuals, families, and parent-child relationships navigate emotions, build resilience, and create a more balanced, fulfilling life. Through practical techniques and guidance, she supports emotional well-being in everyday life.</p>
+                        <p>Her approach blends gentle conversation with effective techniques that help individuals and families reconnect, heal, and grow. Keerthi believes that change begins when people feel truly seen and heard — not analysed or judged. Her sessions are collaborative, empathetic, and deeply human, focusing on everyday life rather than clinical treatment.</p>
+                        <p>Keerthi was recently featured as an upcoming entrepreneur on Wonder Woman Wednesday, where she shared her journey of creating Santasa Counselling — a space built on empathy, listening, and connection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="certificates" class="py-20 md:py-28 bg-light fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Certifications</h2>
+                    <p class="text-lg text-gray-600">Committed to professional development and qualified guidance.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Certificate 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                        <img src="advance.png" alt="Advanced Certification in Counselling" class="mb-6 rounded-lg w-full object-cover">
+                        <h3 class="text-xl font-semibold">Advanced Certification in Counselling</h3>
+                    </div>
+                    
+                    <!-- Certificate 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                        <img src="Diploma.jpg" alt="Diploma in Child Psychology" class="mb-6 rounded-lg w-full object-cover">
+                        <h3 class="text-xl font-semibold">Diploma in Child Psychology</h3>
+                    </div>
+                    
+                    <!-- Certificate 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                        <img src="happy minds.jpg" alt="Happy Minds Trainee Certificate" class="mb-6 rounded-lg w-full object-cover">
+                        <h3 class="text-xl font-semibold">Happy Minds Trainee</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="achievements" class="py-20 md:py-28 bg-white fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Achievements & Recognition</h2>
+                    <p class="text-lg text-gray-600">Proudly contributing to the community and the field of wellness.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-10">
+                    <!-- Achievement 1 -->
+                    <div class="bg-light p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex items-center gap-6">
+                        <i class="fas fa-award text-5xl text-[var(--color-primary)]"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-2">Featured In</h3>
+                            <a href="https://wonderwomanwednesday.com/journey-as-a-counsellor-at-santasa/" class="font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] self-start">"Wonder Women Wednesday"</a>
+                        
                         </div>
-                        <!-- <div class="contact-item"></div>
-                            <div class="contact"></div>
-                            </div>
-                            </div>
-                            </div></div></section> -->
-                            </div></section>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="bg-light p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex items-center gap-6">
+                        <i class="fas fa-user-tie text-5xl text-[var(--color-primary)]"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold mb-2">Invited As Chief Guest</h3>
+                            <p class="text-gray-700 text-lg">Bishop Cotton Women's Law College</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                            <script src="script.js"></script>
+        <!-- Approach & Vision Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="approach" class="py-20 md:py-28 bg-light fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
+                    <!-- Our Approach Image -->
+                    <div>
+                        <img src="IMG_20250817_212946.jpg" alt="Our Approach" class="rounded-xl shadow-lg mb-8 w-full h-auto object-cover aspect-video">
+                    </div>
+                    <!-- Our Approach Text -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Our Vision & Approach</h2>
+                        <div class="space-y-4 text-gray-700">
+                            <p>Our process is client-centered, focusing on creating a safe, non-judgmental space where clients can openly share their thoughts and feelings. We use evidence-based techniques to guide families, parents, and children toward improved communication, emotional resilience, and personal growth. </p>
+                            <p>At Santasa the work is grounded in a client-centred approach, ensuring that each child and family is met with respect, understanding, and personalised care. At Santasa effective counselling techniques tailored to each individual’s needs are used. </p>
+                            <p>These include Cognitive Behavioural Techniques, Solution-Focused Techniques, Art and Play-Based Techniques, Narrative Techniques and Family-Centered Techniques, along with mindfulness practices, emotional regulation tools, and behavioural strategies. At Santasa, we aim to empower individuals and families to strengthen their relationships, overcome challenges, and build a foundation for emotional well-being.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        </body>
-                        </html>
+        <!-- Services Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="services" class="py-20 md:py-28 bg-white fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Our Services</h2>
+                    <p class="text-lg text-gray-600">Comprehensive emotional wellness services tailored to your needs</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-10 lg:max-w-4xl lg:mx-auto">
+                    <!-- Service Card 1 -->
+                    <div class="bg-light p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                        <img src="https://placehold.co/100x100/b7b6e4/0f4c81?text=1" alt="Emotional Wellness Icon" class="mb-6 rounded-full animate-pulse-slow">
+                        <h3 class="text-2xl font-semibold mb-4">Emotional Wellness Counselling</h3>
+                        <ul class="space-y-3 text-gray-700 list-disc list-inside text-left">
+                            <li>This service offers a confidential and compassionate space to explore emotions, effectively manage stress, and rebuild confidence.</li>
+                            <li>We work together to foster self-understanding and emotional balance through reflective conversations and gentle, evidence-based techniques.</li>
+                            <li>We support families in enhancing understanding, achieving relationship harmony, resolving conflicts, and nurturing trust and connection.
+</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <!-- Service Card 3 -->
+                    <div class="bg-light p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center">
+                        <img src="https://placehold.co/100x100/b7b6e4/0f4c81?text=2" alt="Parent-Child Counselling Icon" class="mb-6 rounded-full animate-pulse-slow">
+                        <h3 class="text-2xl font-semibold mb-4">Parent-Child Counselling</h3>
+                        <ul class="space-y-3 text-gray-700 list-disc list-inside text-left">
+                            <li>This service focuses on helping parents and children improve communication, address academic pressures(at school or college), and skillfully handle emotional and behavioural challenges.</li>
+                            <li>The goal is to build stronger bonds through the use of creative and mindful techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="testimonials" class="py-20 md:py-28 text-white fade-in-up" style="background-color: var(--color-primary);">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5 text-white">Client Testimonials</h2>
+                    <p class="text-lg text-blue-100">Hear from those who have transformed their lives with our support</p>
+                </div>
+                
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="bg-white text-gray-800 rounded-xl shadow-2xl p-8 md:p-12 text-center testimonial-card min-h-[300px] flex flex-col justify-center">
+                        <i class="fas fa-quote-left text-4xl text-[var(--color-accent)] mb-6"></i>
+                        <p class="testimonial-text text-lg md:text-xl italic mb-6"></p>
+                        <p class="author font-bold text-lg text-[var(--color-primary)]"></p>
+                        <p class="info text-gray-500"></p>
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-20 text-3xl text-white opacity-70 hover:opacity-100 transition-opacity">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="next absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-20 text-3xl text-white opacity-70 hover:opacity-100 transition-opacity">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Dots -->
+                <div class="pagination flex justify-center gap-3 mt-10">
+                    <!-- Dots will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Resources Section (Latest Articles) -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="resources" class="py-20 md:py-28 bg-light fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Latest Articles</h2>
+                    <p class="text-lg text-gray-600">Insights and guidance for emotional well-being by Keerthi B Nadig.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Article Card 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">🌟 Parenting Today: Growing Together — Why Moms and Dads Need Guidance to Thrive 💭💖</h3>
+                        <p class="text-gray-700 mb-6 flex-grow">Parenting today is very different from the past. The world is changing fast, and children see and learn many things that we didn’t have access to when we were young. 🌍📱</p>
+                        <a href="https://santasacounsellingg.blogspot.com/2025/10/parenting-today-growing-together-why.html" class="font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] self-start">Read Article &rarr;</a>
+                    </div>
+                    
+                    <!-- Article Card 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">✨ Journaling: A Gentle Conversation With Yourself ✨</h3>
+                        <p class="text-gray-700 mb-6 flex-grow">In the noise of everyday life, we often forget the softest voice of all—the one that lives within us 💭💖.</p>
+                        <a href="https://santasacounsellingg.blogspot.com/2025/08/journaling-gentle-conversation-with.html" class="font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] self-start">Read Article &rarr;</a>
+                    </div>
+                    
+                    <!-- Article Card 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+                        <h3 class="text-2xl font-semibold mb-3 text-[var(--color-accent)]">🌸 From Snuggles to Sighs: When Your Son Thinks You’re Annoying 💔</h3>
+                        <p class="text-gray-700 mb-6 flex-grow">Once upon a time, your son couldn’t sleep without your lullabies 🎵. You were the queen of his little world — his chef 👩‍🍳, protector 🛡️, story-teller 📖, and personal cheerleader 🥳.</p>
+                        <a href="https://santasacounsellingg.blogspot.com/2025/08/from-snuggles-to-sighs-when-your-son.html" class="font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] self-start">Read Article &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- FAQ Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="faq" class="py-20 md:py-28 bg-white fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600">Find answers to common questions about our services</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- FAQ Item 1 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">What is counselling?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Counselling is a professional and confidential process that involves a trained counsellor working with individuals, couples, or families to help them explore and address emotional, and relational challenges. It provides a safe, non-judgmental space where people can talk openly about their thoughts, feelings, and concerns. Through active listening, empathy, and supportive techniques, counselling aims to promote self-awareness, emotional healing, and personal growth.</p>
+                            </div>
+                        </div>
+                
+                    
+                    
+                    <!-- FAQ Item 3 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">How can Santasa help?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Santasa Counselling provides an empathetic and non-judgemental approach with a counsellor qualified in Advanced Counselling & Child Psychology. We offer flexible sessions (online or in-person) to help families, parents, and children by:</p>
+                                <ul class="list-disc list-inside space-y-2 pl-4">
+                                    <li>Strengthening family bonds and improving communication.</li>
+                                    <li>Providing parenting support and effective strategies.</li>
+                                    <li>Focusing on child development and emotional well-being.</li>
+                                    <li>Helping you cope with life changes and manage mental health concerns like anxiety and stress.</li>
+                                </ul>
+                            </div>
+                        </div> 
+
+                    <!-- FAQ Item 4 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">When to choose counselling?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Counselling can be beneficial when you feel overwhelmed, stuck, or unable to manage challenges on your own. Consider counselling if you are experiencing:</p>
+                                <ul class="list-disc list-inside space-y-2 pl-4">
+                                    <li>Emotional distress (anxiety, depression, anger).</li>
+                                    <li>Relationship issues or family conflicts.</li>
+                                    <li>Parenting challenges or stress.</li>
+                                    <li>Difficult life transitions (divorce, relocation, loss).</li>
+                                    <li>Low self-esteem or lack of confidence.</li>
+                                    <li>Behavioral changes in children.</li>
+                                </ul>
+                            </div>
+                        </div> 
+
+                    <!-- FAQ Item 5 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">What to expect from counselling?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>You can expect a safe, confidential, and non-judgmental space where you are met with empathy and respect. The process involves:</p>
+                                    <ul class="list-disc list-inside space-y-2 pl-4">
+                                    <li>Active listening and understanding from your counsellor.</li>
+                                    <li>A personalized approach tailored to your unique needs.</li>
+                                    <li>Collaborative goal setting.</li>
+                                    <li>Learning supportive techniques and practical skills.</li>
+                                    <li>Gaining self-awareness and insight.</li>
+                                    <li>Empowerment and growth towards a healthier, more balanced life.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <!-- FAQ Item 6 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">Do you offer sessions for individuals, couples, or families?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>We offer non-clinical counselling for individuals (Emotional Wellness Counselling), parents and children, and families and couples (Family & Relationship Counselling)</p>
+                            </div>
+                        </div>
+
+                    <!-- FAQ Item 7 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">How long is a typical counselling session?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Session lengths can vary based on your personal needs and the type of counselling (individual, family, or child). This will be discussed and confirmed when you schedule your appointment.</p>
+                            </div>
+                        </div>
+
+                    <!-- FAQ Item 8 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">In which languages do you offer support?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>We are happy to offer support and conversations in English, Kannada, and Hindi.</p>
+                            </div>
+                        </div>
+
+                    <!-- FAQ Item 9 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">Are the sessions confidential?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Yes. We provide a safe, non-clinical, and confidential space for all our clients</p>
+                            </div>
+                        </div>
+
+                    <!-- FAQ Item 10 -->
+                        <div class="faq-item bg-light rounded-lg shadow-md overflow-hidden">
+                            <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                                <span class="text-lg font-semibold text-[var(--color-primary)]">What is the difference between non-clinical counselling and clinical therapy?</span>
+                                <i class="fas fa-chevron-down text-[var(--color-primary)] transition-transform duration-300"></i>
+                            </button>
+                            <div class="faq-answer px-6 text-gray-700 space-y-3">
+                                <p>Non-clinical counselling focuses on everyday emotional wellbeing, relationship harmony, and personal growth through empathetic conversation and practical techniques. We are focused on life transitions, communication, stress management, and personal development. Clinical therapy typically involves diagnosing and treating mental health disorders, often including psychiatric diagnosis and medication, which we do not provide.
+</p>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <!-- Adjusted vertical padding from py-24 md:py-36 to py-20 md:py-28 -->
+        <section id="contact" class="py-20 md:py-28 bg-white fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                <div class="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-5">Contact Us</h2>
+                    <p class="text-lg text-gray-600">Reach out to schedule a consultation or learn more about our services</p>
+                </div>
+                
+                <div class="max-w-lg mx-auto">
+                    <!-- Contact Info -->
+                    <div class="bg-light p-8 md:p-10 rounded-xl shadow-xl flex flex-col">
+                        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-6 flex-grow">
+                            <div class="flex items-center gap-4">
+                                <i class="fas fa-phone text-[var(--color-primary)] text-xl w-6 text-center"></i>
+                                <a href="tel:9686450568" class="text-gray-700 hover:text-[var(--color-primary)] text-lg">9686450568</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <i class="fas fa-envelope text-[var(--color-primary)] text-xl w-6 text-center"></i>
+                                <a href="mailto:kb.nadig@gmail.com" class="text-gray-700 hover:text-[var(--color-primary)] text-lg">kb.nadig@gmail.com</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <i class="fas fa-map-marker-alt text-[var(--color-primary)] text-xl w-6 text-center"></i>
+                                <span class="text-gray-700 text-lg">Bangalore, Karnataka</span>
+                            </div>
+                            <div><p>📍 Online & Offline Sessions | Bengaluru, India</p>
+                            <p>🕒 Appointments Only | All Days 11 a.m.–7 p.m.</p></div>
+                        </div>
+                        
+                        <hr class="my-8 border-gray-200">
+                        
+                        <h4 class="text-xl font-semibold mb-5">Follow Us</h4>
+                        <div class="flex gap-5">
+                            <a href="https://www.instagram.com/santasacounsellingg/" target="_blank" class="text-gray-500 hover:text-[var(--color-primary)] text-3xl transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://santasacounsellingg.blogspot.com/" target="_blank" class="text-gray-500 hover:text-[var(--color-primary)] text-3xl transition-colors"><i class="fa-brands fa-blogger"></i></a>
+                            <a href="https://www.youtube.com/@santasacounselling" target="_blank" class="text-gray-500 hover:text-[var(--color-primary)] text-3xl transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://www.linkedin.com/in/keerthi-b-nadig-ab0856178/" target="_blank" class="text-gray-500 hover:text-[var(--color-primary)] text-3xl transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disclaimer Section -->
+        <section id="disclaimer" class="py-16 bg-light fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+                <h3 class="text-xl font-semibold mb-4">Disclaimer</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    Santasa Counselling offers non-clinical emotional support. We do not provide psychiatric diagnosis, medication, or clinical treatment. Our focus is on everyday emotional well-being, family harmony, and personal growth through empathetic conversation and practical techniques.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Wave -->
+    <div class="footer-wave h-20 md:h-40"></div>
+    <footer class="text-blue-100 py-16" style="background-color: var(--color-primary);">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2024 Santasa Counselling. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="https://forms.gle/VX7N8kGi9B6ARrMi6" target="_blank" title="Book Your First Session" class="fixed bottom-6 right-6 z-30 btn-primary p-4 rounded-full shadow-lg transition-transform hover:scale-110">
+        <i class="fas fa-calendar-check text-xl"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            // --- Testimonial Data ---
+            const testimonials = [
+                {
+                    text: "Santasa counselling has truly transformed my relationship with my children. As a school teacher, I thought I understood kids, but I struggled with my own. The parent-child counselling sessions helped me bridge that gap. The counsellor was patient, empathetic, and offered practical solutions.",
+                    author: "Radhika Sharma",
+                    info: "School Teacher"
+                },
+                {
+                    text: "Working in marketing, I’m constantly on the go, and I was missing out on my kids' emotional needs. The parent-child counselling at Santasa helped me understand how to communicate better with my children. The counsellor provided us with tools to navigate misunderstandings and resolve conflicts.",
+                    author: "Arjun Patel",
+                    info: "Marketing Manager"
+                },
+                {
+                    text: "As a businesswoman managing a start-up, balancing my personal and professional life became overwhelming. Santasa's parent counselling helped me not just become a better parent but also manage stress and work-life balance effectively. The sessions were insightful, and I could immediately see the positive impact.",
+                    author: "Priya Desai",
+                    info: "Entrepreneur"
+                },
+                {
+                    text: "Juggling work and family was leaving me exhausted, and I was concerned about the impact it had on my relationship with my teenage daughter. Santasa’s parent counselling helped me reconnect with her. The counsellor offered great advice, and now our communication is much healthier.",
+                    author: "Meera Iyer",
+                    info: "Accountant"
+                },
+                {
+                    text: "Being in a high-pressure job like software development, I never had time to focus on family dynamics. Santasa's family counselling sessions made me realize how small efforts can improve communication and understanding. The counsellor guided us step-by-step, and now, my wife and I can handle issues without heated arguments.",
+                    author: "Vinod Menon",
+                    info: "Software Engineer"
+                }
+            ];
+
+            let currentTestimonial = 0;
+            let interval;
+
+            const card = document.querySelector(".testimonial-card");
+            const cardText = document.querySelector(".testimonial-text");
+            const authorText = document.querySelector(".author");
+            const infoText = document.querySelector(".info");
+            const pagination = document.querySelector(".pagination");
+
+            // --- Create Dots ---
+            if (pagination) {
+                testimonials.forEach((_, index) => {
+                    const dot = document.createElement("span");
+                    dot.classList.add("dot", "w-3", "h-3", "bg-white", "rounded-full", "cursor-pointer", "opacity-50", "transition-opacity");
+                    if (index === 0) dot.classList.add("opacity-100");
+                    dot.addEventListener("click", () => {
+                        currentTestimonial = index;
+                        updateTestimonial();
+                        resetAutoSwitching();
+                    });
+                    pagination.appendChild(dot);
+                });
+            }
+            const dots = document.querySelectorAll(".pagination .dot");
+
+            // --- Update Testimonial Function ---
+            function updateTestimonial() {
+                if (!card || !cardText || !authorText || !infoText || !dots.length) return;
+                
+                const testimonial = testimonials[currentTestimonial];
+                
+                card.classList.remove("fade-in");
+                void card.offsetWidth; // Trigger reflow
+                card.classList.add("fade-in");
+
+                cardText.textContent = testimonial.text;
+                authorText.textContent = testimonial.author;
+                infoText.textContent = testimonial.info;
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle("opacity-100", index === currentTestimonial);
+                    dot.classList.toggle("opacity-50", index !== currentTestimonial);
+                });
+            }
+
+            function nextTestimonial() {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                updateTestimonial();
+            }
+
+            function prevTestimonial() {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                updateTestimonial();
+            }
+
+            function startAutoSwitching() {
+                clearInterval(interval);
+                interval = setInterval(nextTestimonial, 5000);
+            }
+
+            function resetAutoSwitching() {
+                clearInterval(interval);
+                startAutoSwitching();
+            }
+
+            // Testimonial Event Listeners
+            const prevButton = document.querySelector(".prev");
+            const nextButton = document.querySelector(".next");
+
+            if (prevButton) {
+                prevButton.addEventListener("click", () => {
+                    prevTestimonial();
+                    resetAutoSwitching();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener("click", () => {
+                    nextTestimonial();
+                    resetAutoSwitching();
+                });
+            }
+            
+            if (dots.length > 0) {
+                updateTestimonial();
+                startAutoSwitching();
+            }
+
+
+            // --- Popup Logic ---
+            const popup = document.getElementById("contactPopup");
+            const closeBtn = document.getElementById("closePopup");
+            
+            if (popup && closeBtn) {
+                const popupContent = popup.querySelector("div");
+                
+                // Show popup after a delay, but only if not already shown this session
+                const hasSeenPopup = sessionStorage.getItem('hasSeenPopup');
+                if (!hasSeenPopup) {
+                    setTimeout(() => {
+                        popup.classList.remove("invisible", "opacity-0");
+                        if (popupContent) {
+                            popupContent.classList.remove("scale-95");
+                        }
+                        sessionStorage.setItem('hasSeenPopup', 'true'); // Mark as seen
+                    }, 1000); // 1 second delay
+                }
+
+                function closePopup() {
+                    popup.classList.add("opacity-0");
+                    if (popupContent) {
+                        popupContent.classList.add("scale-95");
+                    }
+                    setTimeout(() => popup.classList.add("invisible"), 300);
+                }
+
+                closeBtn.addEventListener("click", closePopup);
+                popup.addEventListener("click", function (e) {
+                    if (e.target === popup) { // Only close if clicking on the overlay itself
+                        closePopup();
+                    }
+                });
+            }
+
+            // --- Mobile Nav Logic ---
+            const toggleButton = document.getElementById("mobile-nav-toggle");
+            const navMenu = document.getElementById("nav-menu");
+
+            if (toggleButton && navMenu) {
+                toggleButton.addEventListener("click", function () {
+                    navMenu.classList.toggle("hidden");
+                    // Toggle icon
+                    const icon = toggleButton.querySelector("i");
+                    if (icon) {
+                        icon.classList.toggle("fa-bars");
+                        icon.classList.toggle("fa-times");
+                    }
+                });
+                
+                // Close mobile nav when a link is clicked
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.add('hidden');
+                        const icon = toggleButton.querySelector("i");
+                        if (icon) {
+                            icon.classList.add("fa-bars");
+                            icon.classList.remove("fa-times");
+                        }
+                    });
+                });
+            }
+
+            // --- FAQ Accordion Logic ---
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const icon = button.querySelector('i');
+                    
+                    if (!answer || !icon) return;
+
+                    // Close other open FAQ items
+                    document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+                        if (openAnswer !== answer) {
+                            openAnswer.classList.remove('open');
+                            const openIcon = openAnswer.previousElementSibling.querySelector('i');
+                            if (openIcon) {
+                                openIcon.classList.remove('rotate-180');
+                            }
+                        }
+                    });
+
+                    answer.classList.toggle('open');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // --- Smooth scrolling for anchor links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        // Calculate position, accounting for the fixed header
+                        const headerElement = document.querySelector('header');
+                        const headerOffset = headerElement ? headerElement.offsetHeight : 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // --- Fade-in-up Animation on Scroll ---
+            try {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Trigger when 10% of the element is visible
+                });
+
+                document.querySelectorAll('.fade-in-up').forEach(element => {
+                    observer.observe(element);
+                });
+            } catch(e) {
+                console.error("IntersectionObserver error: ", e);
+            }
+
+        });
+    </script>
+
+</body>
+</html>
