@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santasa Counselling | Find Your Way Forward</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        santasa: {
+                            teal: '#32959d',
+                            yellow: '#ffeba4',
+                            blue: '#a4e9ff',
+                            pink: '#ffa4d2',
+                            dark: '#1f2937',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'serif'],
+                        body: ['Source Sans Pro', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Source Sans Pro', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        
+        .page-section { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        .page-section.active { display: block; opacity: 1; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+        }
+
+        .blob-bg {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Testimonial styling */
+        .quote-mark { color: #ffa4d2; font-size: 3rem; line-height: 1; font-family: Georgia, serif; opacity: 0.5;}
+        
+        /* Custom Bullet Points */
+        ul.custom-bullets li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        ul.custom-bullets li::before {
+            content: '•';
+            color: #32959d;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-santasa-light text-santasa-dark font-body antialiased relative overflow-x-hidden">
+
+    <!-- Decorative Background Blobs -->
+    <div class="blob-bg bg-santasa-blue w-96 h-96 rounded-full top-0 left-[-10%]"></div>
+    <div class="blob-bg bg-santasa-yellow w-96 h-96 rounded-full top-[20%] right-[-10%]"></div>
+    <div class="blob-bg bg-santasa-pink w-96 h-96 rounded-full top-[60%] left-[10%]"></div>
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 cursor-pointer" onclick="navigateTo('home')">
+                    <span class="font-heading font-bold text-2xl text-santasa-teal tracking-wide">SANTASA</span>
+                    <span class="block text-xs uppercase tracking-widest text-gray-500 -mt-1">Counselling</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigateTo('home')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">Home</button>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-santasa-teal font-medium transition-colors flex items-center">
+                            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+
+                            <button onclick="navigateTo('emotional-wellness')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-pink/20 hover:text-santasa-teal transition-colors"><strong>Emotional Wellness Counselling</strong> → Finding Balance, Confidence & Emotional Well-being</button>
+                            <button onclick="navigateTo('relationship-counselling')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-blue/20 hover:text-santasa-teal transition-colors"><strong>Relationship Counselling</strong> → Building Stronger, Healthier Relationships</button>
+                            <button onclick="navigateTo('parent-counselling')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-blue/20 hover:text-santasa-teal transition-colors"><strong>Parent Counselling</strong> → Helping You Raise Happy & Resilient Children</button>
+                            <button onclick="navigateTo('child-counselling')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-pink/20 hover:text-santasa-teal transition-colors"><strong>Child Counselling</strong> → Helping Children Understand Their Emotions</button>
+                            <button onclick="navigateTo('student-counselling')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-pink/20 hover:text-santasa-teal transition-colors"><strong>Student Counselling</strong> → Helping Students Thrive Academically & Emotionally</button>
+                            <button onclick="navigateTo('teen-counselling')" class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-santasa-blue/20 hover:text-santasa-teal transition-colors"><strong>Teen Counselling</strong> → Supporting Teens Through Life's Challenges</button>
+                            
+
+                        </div>
+                    </div>
+                    <button onclick="navigateTo('resources')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">Resources</button>
+                    <button onclick="navigateTo('about')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">About</button>
+                    <button onclick="navigateTo('faqs')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">FAQs</button>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-6 py-2.5 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Let's Talk</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-santasa-teal focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <button onclick="navigateTo('home'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Home</button>
+                <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Services</div>
+
+                <button onclick="navigateTo('emotional-wellness'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Emotional Wellness Counselling</strong> → Finding Balance, Confidence & Emotional Well-being</button>
+                <button onclick="navigateTo('relationship-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Relationship Counselling</strong> → Building Stronger, Healthier Relationships</button>
+                <button onclick="navigateTo('parent-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Parent Counselling</strong> → Helping You Raise Happy & Resilient Children</button>
+                <button onclick="navigateTo('child-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Child Counselling</strong> → Helping Children Understand Their Emotions</button>
+                <button onclick="navigateTo('student-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Student Counselling</strong> → Helping Students Thrive Academically & Emotionally</button>
+                <button onclick="navigateTo('teen-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Teen Counselling</strong> → Supporting Teens Through Life's Challenges</button>
+                
+                <button onclick="navigateTo('resources'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Resources</button>
+                <button onclick="navigateTo('about'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">About</button>
+                <button onclick="navigateTo('faqs'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">FAQs</button>
+                <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-center px-3 py-3 mt-4 rounded-full text-base font-medium bg-santasa-teal text-white hover:bg-teal-700 shadow-md">Let's Talk</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="pt-20 min-h-screen">
+
+        <!-- ================= HOME PAGE ================= -->
+        <div id="page-home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="relative bg-white pt-16 pb-24 lg:pt-32 lg:pb-32 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                        <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                            <span class="inline-block py-1 px-3 rounded-full bg-santasa-yellow/40 text-gray-800 text-sm font-semibold tracking-wider uppercase mb-2">A Safe Space For You</span>
+                            <h1 class="text-5xl lg:text-5xl font-heading font-bold text-gray-900 leading-tight">
+                                You Don't Have to Face Life's <span class="text-santasa-teal">Challenges Alone.</span>
+                            </h1>
+                            <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                                Life can feel overwhelming at times. Whether you're dealing with stress, parenting challenges, relationship concerns, academic pressure, emotional struggles, or major life changes, you deserve a safe space where you can be heard, understood, and supported. </p><p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">At Santasa Counselling, every session is guided by empathy, respect, and confidentiality, helping you find clarity, emotional balance, and practical ways to move forward. </p>
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                    Book your first session
+                                </button>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 relative">
+                            <!-- Hero Image Placeholder -->
+                            <div class="relative rounded-2xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+                                <img src="2.jpg" alt="Calm environment for counselling" class="w-full h-auto object-cover aspect-[4/3]">
+                            </div>
+                            <!-- Decorative elements behind image -->
+                            <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-santasa-pink rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-pulse"></div>
+                            <div class="absolute -top-6 -right-6 w-48 h-48 bg-santasa-blue rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-pulse" style="animation-delay: 1s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How Can I Help You? (Main Navigation) -->
+            <section id="services-nav" class="py-24 bg-gray-50 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">How Can I Help You Today?</h2>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Select the area that feels most relevant to what you're experiencing right now.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+                        <!-- Service Card 6 -->
+                        <div onclick="navigateTo('emotional-wellness')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-pink/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-pink">
+                            <div class="w-16 h-16 bg-santasa-pink/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                <!-- <i class="fa-solid fa-hands-holding-child text-3xl text-santasa-pink"></i> -->
+                                <i class="fa-solid fa-seedling text-3xl text-santasa-pink"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">Emotional Wellness Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                               Supporting individuals experiencing stress, anxiety, emotional exhaustion, or life transitions.
+                            </p>
+                            <div class="text-pink-600 font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 5 -->
+                        <div onclick="navigateTo('relationship-counselling')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-blue/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-teal">
+                            <div class="w-16 h-16 bg-santasa-blue/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                 <i class="fa-solid fa-handshake text-3xl text-santasa-teal"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-santasa-teal transition-colors">Relationship Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                               Helping couples and families improve communication, rebuild trust, and strengthen relationships.
+
+                            </p>
+                            <div class="text-santasa-teal font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 1 -->
+                        <div onclick="navigateTo('parent-counselling')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-blue/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-teal">
+                            <div class="w-16 h-16 bg-santasa-blue/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                <!-- <i class="fas fa-seedling text-3xl text-santasa-teal"></i> -->
+                                <i class="fa-solid fa-hands-holding-child text-3xl text-santasa-teal"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-santasa-teal transition-colors">Parent Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                                Support to help you understand your child, improve communication, and build stronger family relationships
+                            </p>
+                            <div class="text-santasa-teal font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 2 -->
+                        <div onclick="navigateTo('child-counselling')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-pink/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-pink">
+                            <div class="w-16 h-16 bg-santasa-pink/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                <!-- <i class="fa-solid fa-hands-holding-child text-3xl text-santasa-pink"></i> -->
+                                <i class="fa-solid fa-puzzle-piece text-3xl text-santasa-pink"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">Child Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                                Helping children understand emotions, develop confidence, and build healthy coping skills.
+                            </p>
+                            <div class="text-pink-600 font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 4 -->
+                        <div onclick="navigateTo('student-counselling')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-pink/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-pink">
+                            <div class="w-16 h-16 bg-santasa-pink/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                <!-- <i class="fa-solid fa-hands-holding-child text-3xl text-santasa-pink"></i> -->
+                                <i class="fa-solid fa-graduation-cap text-3xl text-santasa-pink"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">Student Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                                Helping students manage stress, improve focus, build confidence, and navigate academic and career decisions.
+                            </p>
+                            <div class="text-pink-600 font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 3 -->
+                        <div onclick="navigateTo('teen-counselling')" class="glass-card rounded-3xl p-8 lg:p-12 cursor-pointer group hover:bg-santasa-blue/10 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl border-t-4 border-santasa-teal">
+                            <div class="w-16 h-16 bg-santasa-blue/30 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                                <!-- <i class="fas fa-seedling text-3xl text-santasa-teal"></i> -->
+                                <i class="fa-solid fa-person text-3xl text-santasa-teal"></i>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-santasa-teal transition-colors">Teen Counselling</h3>
+                            <p class="text-gray-600 mb-6 line-clamp-3">
+                                Supporting teenagers through academic pressure, emotional challenges, confidence, and identity.
+                            </p>
+                            <div class="text-santasa-teal font-semibold flex items-center">
+                                Explore this path <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Quick Trust Builder -->
+            <section class="py-16 bg-white">
+                 <div class="max-w-4xl mx-auto px-4 text-center">
+                   <i class="fa-solid fa-quote-left text-6xl text-pink-500 block mb-4"></i>
+                    <p class="text-2xl md:text-3xl font-heading text-gray-800 italic mb-8 leading-relaxed">
+                        "I finally felt heard without judgment. It wasn't about fixing me instantly, but understanding why I felt so broken, and slowly putting the pieces back together."
+                    </p>
+                    <div class="flex items-center justify-center">
+                        <div class="w-12 h-12 bg-santasa-yellow rounded-full flex items-center justify-center text-xl font-bold text-gray-800 mr-4 shadow-sm">F</div>
+                        <div class="text-left">
+                            <p class="font-bold text-gray-900">Female, 34</p>
+                            <p class="text-sm text-gray-500">Sought help for chronic overwhelm</p>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+
+            <!-- Quick Trust Builder -->
+            <section class="py-16 bg-white">
+                 <div class="max-w-4xl mx-auto px-4 text-center">
+                   <!-- <i class="fa-solid fa-quote-left text-6xl text-pink-500 block mb-4"></i> -->
+                    <p class="text-2xl md:text-3xl font-heading text-gray-800 italic mb-8 leading-relaxed">Disclaimer</p>
+                    <p>
+                        Santasa Counselling provides non-clinical emotional support, focusing on everyday well-being, family harmony, and personal growth. We do not offer psychiatric diagnoses, medication, or clinical treatment. Our approach emphasizes empathetic conversation and practical strategies to help you navigate life’s challenges.
+                    </p>
+                    <!-- <div class="flex items-center justify-center">
+                        <div class="w-12 h-12 bg-santasa-yellow rounded-full flex items-center justify-center text-xl font-bold text-gray-800 mr-4 shadow-sm">F</div>
+                        <div class="text-left">
+                            <p class="font-bold text-gray-900">Female, 34</p>
+                            <p class="text-sm text-gray-500">Sought help for chronic overwhelm</p>
+                        </div>
+                    </div> -->
+                 </div>
+            </section>
+
+        </div>
+        
+        <!-- ================= EMOTIONAL WELLNESS COUNSELLING PAGE ================= -->
+        <div id="page-emotional-wellness" class="page-section">
+            
+            <!-- Service Hero -->
+            <div class="bg-santasa-blue/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-santasa-teal font-semibold tracking-wider uppercase text-sm mb-4 block">EMOTIONAL WELLNESS COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Your Emotional Well-being Matters</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        Life's responsibilities, stress, and unexpected challenges can leave you feeling emotionally exhausted. Counselling offers a safe space to understand your emotions, regain balance, and move forward with confidence.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div>
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Does Any of This Feel Like Your Reality?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <li>You feel emotionally drained.</li>
+                            <li>You constantly overthink.</li>
+                            <li>You struggle to relax.</li>
+                            <li>Everyday stress feels overwhelming.</li>
+                            <li>You feel stuck or uncertain.</li>
+                            <li>You're not feeling like yourself anymore.</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <img src="emotional-wellness-counselling.png" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                            <p class="text-sm italic text-gray-600">"For the first time in years, my mind feels quieter, and I finally feel at peace with myself."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-santasa-yellow/20 rounded-bl-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">How We Can Work Through This Together?</h3>
+                            <!-- <p class="text-gray-700 mb-4">Counselling isn't about giving you all the answers—it's about helping you understand yourself, navigate life's challenges, and build healthier ways to cope at your own pace.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Understand your emotional experiences.</li>
+                                <li>Develop healthy coping strategies.</li>
+                                <li>Build resilience.</li>
+                                <li>Improve self-awareness.</li>
+                                <li>Create positive and lasting change.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">What Your Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong>Begin with a confidential conversation.</li>
+                                <li><strong>Step 2:</strong>Understand your emotions and challenges.</li>
+                                <li><strong>Step 3:</strong>Learn practical strategies for everyday life</li>
+                                <li><strong>Step 4:</strong> Build emotional strength and confidence.</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Change (Benefits) -->
+                <div class="mb-24">
+                    <h2 class="text-3xl font-heading font-bold text-center text-gray-900 mb-12">Imagine Feeling More Like Yourself Again</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-blue/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-battery-full text-2xl text-santasa-teal"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Greater Peace of Mind</h4>
+                            <p class="text-gray-600">Experience fewer overwhelming thoughts and feel calmer, more present, and better equipped to handle everyday life.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-yellow/50 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-anchor text-2xl text-yellow-600"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Emotional Balance</h4>
+                            <p class="text-gray-600">Build resilience, understand your emotions, and respond to life's ups and downs with greater confidence and clarity.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-pink/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-heart text-2xl text-pink-500"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Healthier Relationships</h4>
+                            <p class="text-gray-600">Strengthen communication, rebuild trust, set healthy boundaries, and connect more deeply with the people who matter most.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-santasa-teal text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative">
+                    <i class="fas fa-quote-left text-white/20 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "From the outside, everything looked fine—but inside, I felt emotionally drained every single day. I had forgotten what peace felt like. Counselling helped me understand my emotions instead of fighting them. I now set healthier boundaries, treat myself with kindness, and wake up feeling like I'm living my life instead of simply surviving it."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl font-bold mr-4">F</div>
+                            <div>
+                                <p class="font-bold">Female, 31</p>
+                                <p class="text-sm text-teal-100">Rediscovering confidence & emotional balance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-yellow/20 p-12 rounded-3xl border border-santasa-yellow/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">You Deserve to Feel Like Yourself Again</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        You don't have to keep carrying the weight of stress, anxiety, overwhelm, or self-doubt on your own. Taking the first step today can lead to a calmer mind, greater confidence, and lasting emotional well-being.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Book Emotional Wellness Counselling
+                    </button>
+                    <!-- <p class="mt-4 text-sm text-gray-500">Free 15-minute introductory call to see if we're a good fit.</p> -->
+                </div>
+
+            </div>
+        </div>
+\
+        <!-- ================= RELATIONSHIP COUNSELLING PAGE ================= -->
+        <div id="page-relationship-counselling" class="page-section">
+            
+            <!-- Service Hero -->
+            <div class="bg-santasa-blue/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-santasa-teal font-semibold tracking-wider uppercase text-sm mb-4 block">RELATIONSHIP COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Strong Relationships Begin with Better Understanding</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        Every relationship experiences challenges. Counselling provides a safe and neutral space where couples and families can improve communication, rebuild trust, and strengthen their relationships.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div>
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Does Any of This Feel Like Your Reality?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <li>Communication often ends in arguments.</li>
+                            <li>You feel unheard or misunderstood.</li>
+                            <li>Trust has been affected.</li>
+                            <li>Emotional distance has increased.</li>
+                            <li>Conflicts remain unresolved.</li>
+                            <li>You want to reconnect but don't know where to begin.</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <img src="relationship-counselling.png" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                            <p class="text-sm italic text-gray-600">"We didn't stop loving each other—we just forgot how to communicate. Counselling helped us find our way back."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-santasa-yellow/20 rounded-bl-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">How We Can Work Through This Together?</h3>
+                            <!-- <p class="text-gray-700 mb-4">Counselling isn't about giving you all the answers—it's about helping you understand yourself, navigate life's challenges, and build healthier ways to cope at your own pace.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Improve communication.</li>
+                                <li>Resolve conflicts respectfully.</li>
+                                <li>Rebuild trust.</li>
+                                <li>Strengthen emotional connection.</li>
+                                <li>Develop healthier relationship patterns.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">What Your Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong>Share your concerns openly.</li>
+                                <li><strong>Step 2:</strong>Understand each other's perspectives.</li>
+                                <li><strong>Step 3:</strong> Learn healthier communication skills.</li>
+                                <li><strong>Step 4:</strong>Build a stronger relationship together.</li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Change (Benefits) -->
+                <div class="mb-24">
+                    <h2 class="text-3xl font-heading font-bold text-center text-gray-900 mb-12">Imagine Feeling More Like Yourself Again</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-blue/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-battery-full text-2xl text-santasa-teal"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Greater Peace of Mind</h4>
+                            <p class="text-gray-600">Experience fewer overwhelming thoughts and feel calmer, more present, and better equipped to handle everyday life.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-yellow/50 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-anchor text-2xl text-yellow-600"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Emotional Balance</h4>
+                            <p class="text-gray-600">Build resilience, understand your emotions, and respond to life's ups and downs with greater confidence and clarity.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-pink/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-heart text-2xl text-pink-500"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Healthier Relationships</h4>
+                            <p class="text-gray-600">Strengthen communication, rebuild trust, set healthy boundaries, and connect more deeply with the people who matter most.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-santasa-teal text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative">
+                    <i class="fas fa-quote-left text-white/20 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "We loved each other, but every disagreement turned into silence or blame. We had almost given up hope. Counselling helped us understand the patterns we kept repeating and taught us how to truly listen without defending ourselves. Our relationship feels lighter, safer, and more connected than it has in years."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl font-bold mr-4">F & M</div>
+                            <div>
+                                <p class="font-bold">Couple, 34 & 36</p>
+                                <p class="text-sm text-teal-100">Rebuilding trust and communication</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-yellow/20 p-12 rounded-3xl border border-santasa-yellow/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Every Relationship Deserves the Chance to Heal & Grow</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Healthy relationships aren't about never having conflicts—they're about learning how to navigate them together. Whether you're rebuilding trust, improving communication, or reconnecting emotionally, support is just one conversation away.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Book Relationship Counselling
+                    </button>
+                    <!-- <p class="mt-4 text-sm text-gray-500">Free 15-minute introductory call to see if we're a good fit.</p> -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= STUDENT COUNSELLING PAGE ================= -->
+        <div id="page-student-counselling" class="page-section">
+            
+             <!-- Service Hero -->
+             <div class="bg-santasa-pink/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-pink-600 font-semibold tracking-wider uppercase text-sm mb-4 block">STUDENT COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Helping You Thrive Both Academically and Emotionally</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        Academic pressure, exams, career choices, and personal expectations can feel overwhelming. Counselling helps students build confidence, reduce stress, and develop healthy habits that support both learning and emotional well-being.
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div class="order-2 md:order-1 relative">
+                        <img src="student-counselling.png" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500">
+                            <p class="text-sm italic text-gray-600">"Success stopped feeling like constant pressure. I learned how to believe in myself again."</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">Does This Feel Like What's Happening at Home?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                            <li>You feel anxious before exams.</li>
+                            <li>You struggle to concentrate.</li>
+                            <li>You're worried about your future.</li>
+                            <li>You lack confidence.</li>
+                            <li>You're finding it difficult to balance studies and personal life.</li>
+                            <li>Stress is affecting your daily routine.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-santasa-blue/20 rounded-tr-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-pink-600">How We Can Work Through This Together</h3>
+                            <!-- <p class="text-gray-700 mb-4">Every family experiences challenges. Counselling provides a supportive space where parents and children can better understand one another, communicate more openly, and work through difficulties together.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Manage academic stress.</li>
+                                <li>Improve focus and motivation.</li>
+                                <li>Build confidence.</li>
+                                <li>Develop healthy study habits.</li>
+                                <li>Improve emotional well-being.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-pink-600">What Your Family's Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong>Understand your current challenges.</li>
+                                <li><strong>Step 2:</strong> Identify what's creating stress.</li>
+                                <li><strong>Step 3:</strong> Learn practical coping and study strategies.</li>
+                                <li><strong>Step 4:</strong> Build confidence for future success.</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-pink-500/30 blur-3xl rounded-full"></div>
+                    <i class="fas fa-quote-left text-white/10 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "I was constantly exhausted, anxious before every exam, and convinced I wasn't good enough no matter how hard I studied. Counselling helped me break the cycle of perfectionism and self-doubt. My grades improved, but more importantly, I stopped measuring my worth by my marks. I now study with confidence instead of fear."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-xl font-bold mr-4 text-white">M</div>
+                            <div>
+                                <p class="font-bold">Male, 21</p>
+                                <p class="text-sm text-gray-400">University student overcoming academic stress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-blue/20 p-12 rounded-3xl border border-santasa-blue/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Your Success Shouldn't Come at the Cost of Your Well-being</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Academic pressure, career uncertainty, and self-doubt don't have to define your student journey. Together, we can help you manage stress, build confidence, and thrive both inside and outside the classroom.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-pink-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                       Book Student Counselling
+                    </button>
+                    <p class="mt-4 text-sm text-gray-500">Reach out to discuss how we can support your specific family dynamic.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= PARENT COUNSELLING PAGE ================= -->
+        <div id="page-parent-counselling" class="page-section">
+            
+            <!-- Service Hero -->
+            <div class="bg-santasa-blue/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-santasa-teal font-semibold tracking-wider uppercase text-sm mb-4 block">PARENT COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Parenting Doesn't Have to Feel So Overwhelming</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        Every parent wants the best for their child, but parenting can sometimes feel confusing, stressful, and emotionally exhausting. Whether you're dealing with behavioural concerns, communication difficulties, emotional outbursts,academic pressure, or everyday parenting challenges, you don't have to face them alone. At Santasa Counselling, you'll find a safe and supportive space to understand your child better, strengthen your relationship, and build practical parenting skills that work for your family.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div>
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Does Any of This Feel Like Your Reality?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <li>Your child doesn't listen or communicate with you.</li>
+                            <li>Everyday conversations turn into arguments.</li>
+                            <li>Your child seems anxious, angry, withdrawn, or emotionally sensitive.</li>
+                            <li>You're worried about your child's behaviour or school performance.</li>
+                            <li>YYou often question whether you're parenting the right way.</li>
+                            <li>You feel emotionally drained trying to balance everything.</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <img src="parent-counselling.png" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                            <p class="text-sm italic text-gray-600">"I stopped trying to be a perfect parent. Learning to truly understand my child changed everything."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-santasa-yellow/20 rounded-bl-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">How We Can Work Through This Together?</h3>
+                            <!-- <p class="text-gray-700 mb-4">Counselling isn't about giving you all the answers—it's about helping you understand yourself, navigate life's challenges, and build healthier ways to cope at your own pace.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Understand your child's emotional and behavioural needs.</li>
+                                <li>Improve communication within your family.</li>
+                                <li>Learn practical parenting strategies.</li>
+                                <li>Handle challenging situations with confidence.</li>
+                                <li>Build a stronger and healthier parent-child relationship.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">What Your Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong>  Share your concerns in a safe and confidential space.</li>
+                                <li><strong>Step 2:</strong>  Understand your child's behaviour and emotional needs.</li>
+                                <li><strong>Step 3:</strong> Learn practical parenting strategies.</li>
+                                <li><strong>Step 4:</strong> Build stronger family relationships and lasting confidence.</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Change (Benefits) -->
+                <div class="mb-24">
+                    <h2 class="text-3xl font-heading font-bold text-center text-gray-900 mb-12">Imagine Feeling More Like Yourself Again</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-blue/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-battery-full text-2xl text-santasa-teal"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Greater Peace of Mind</h4>
+                            <p class="text-gray-600">Experience fewer overwhelming thoughts and feel calmer, more present, and better equipped to handle everyday life.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-yellow/50 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-anchor text-2xl text-yellow-600"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Emotional Balance</h4>
+                            <p class="text-gray-600">Build resilience, understand your emotions, and respond to life's ups and downs with greater confidence and clarity.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-pink/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-heart text-2xl text-pink-500"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Healthier Relationships</h4>
+                            <p class="text-gray-600">Strengthen communication, rebuild trust, set healthy boundaries, and connect more deeply with the people who matter most.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-santasa-teal text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative">
+                    <i class="fas fa-quote-left text-white/20 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "I thought I was failing as a parent because every conversation with my 10-year-old ended in tears or arguments. I kept reading parenting advice, but nothing seemed to work. Through counselling, I realized my child wasn't being 'difficult'—they were asking to be understood. Today, our home feels calmer, our communication is stronger, and I finally feel confident in my parenting instead of constantly questioning myself."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl font-bold mr-4">F</div>
+                            <div>
+                                <p class="font-bold">Female, 37</p>
+                                <p class="text-sm text-teal-100">Mother navigating parenting challenges</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-yellow/20 p-12 rounded-3xl border border-santasa-yellow/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">You Don't Have to Figure It Out Alone</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Parenting doesn't come with a manual, and every child is different. Whether you're facing daily struggles, emotional outbursts, or simply want to strengthen your relationship with your child, support is here to help you parent with confidence—not guilt.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Book Parent Counselling
+                    </button>
+                    <!-- <p class="mt-4 text-sm text-gray-500">Free 15-minute introductory call to see if we're a good fit.</p> -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= CHILD COUNSELLING ================= -->
+        <div id="page-child-counselling" class="page-section">
+            
+             <!-- Service Hero -->
+             <div class="bg-santasa-pink/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-pink-600 font-semibold tracking-wider uppercase text-sm mb-4 block">CHILD COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Helping Your Child Feel Safe, Confident and Understood</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        Children experience emotions just like adults, but they often express them through their behaviour. Counselling helps children understand their feelings,develop healthy coping skills, and build confidence in a supportive and caring environment.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div class="order-2 md:order-1 relative">
+                        <img src="child-counselling.png" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500">
+                            <p class="text-sm italic text-gray-600">"My child smiles more, talks more, and finally feels safe expressing their feelings."</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">Does This Feel Like What's Happening at Home?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                            <li>Your child struggles to express emotions.</li>
+                            <li>Your child has frequent tantrums or emotional outbursts.</li>
+                            <li>Your child has become withdrawn or unusually quiet.</li>
+                            <li>Your child struggles with confidence or friendships.</li>
+                            <li>You're concerned about your child's emotional well-being.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-santasa-blue/20 rounded-tr-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-pink-600">How We Help Families Reconnect</h3>
+                            <!-- <p class="text-gray-700 mb-4">Every family experiences challenges. Counselling provides a supportive space where parents and children can better understand one another, communicate more openly, and work through difficulties together.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Help your child recognise and express emotions.</li>
+                                <li>Improve emotional regulation.</li>
+                                <li>Build confidence and resilience.</li>
+                                <li>Strengthen communication.</li>
+                                <li>Support healthy emotional development.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">What Your Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong> Build trust through a safe and child-friendly environment.</li>
+                                <li><strong>Step 2:</strong> Understand your child's emotions and experiences.</li>
+                                <li><strong>Step 3:</strong>  Develop healthy emotional and social skills.</li>
+                                <li><strong>Step 4:</strong>  Encourage positive growth and confidence.</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-gray-900 text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-48 h-48 bg-pink-500/30 blur-3xl rounded-full"></div>
+                    <i class="fas fa-quote-left text-white/10 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "Our son stopped talking about school and became withdrawn after a difficult year. We didn't know how to reach him. Counselling gave him a safe space to express feelings he couldn't put into words at home. Watching him smile again, make friends, and confidently share his emotions has been one of the greatest gifts our family has received."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-xl font-bold mr-4 text-white">F</div>
+                            <div>
+                                <p class="font-bold">Parents of a 9-year-old</p>
+                                <p class="text-sm text-gray-400">Helping their child rebuild confidence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-blue/20 p-12 rounded-3xl border border-santasa-blue/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Every Child Deserves to Feel Safe, Heard & Understood</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Children often express emotions through their behaviour rather than words. Early support can help them build confidence, emotional resilience, and healthy coping skills that last a lifetime.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-pink-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-pink-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                       Book Child Counselling
+                    </button>
+                    <p class="mt-4 text-sm text-gray-500">Reach out to discuss how we can support your specific family dynamic.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= TEEN COUNSELLING PAGE ================= -->
+        <div id="page-teen-counselling" class="page-section">
+            
+            <!-- Service Hero -->
+            <div class="bg-santasa-blue/20 pt-16 pb-20 border-b border-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8">
+                    <span class="text-santasa-teal font-semibold tracking-wider uppercase text-sm mb-4 block">TEEN COUNSELLING</span>
+                    <h1 class="text-4xl md:text-6xl font-heading font-bold text-gray-900 mb-6">Growing Up Is Challenging—You Don't Have to Face It Alone</h1>
+                    <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                        The teenage years can bring emotional ups and downs, academic pressure,identity questions, and relationship challenges. Counselling provides a supportive space where teenagers can talk openly, understand themselves better, and build confidence.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                
+                <!-- The Struggle (What they feel) -->
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                    <div>
+                        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Does Any of This Feel Like Your Reality?</h2>
+                        <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                            <li>You feel stressed or overwhelmed.</li>
+                            <li>School or exams feel like too much pressure.</li>
+                            <li>You struggle with confidence or self-esteem.</li>
+                            <li>You find it difficult to express your emotions.</li>
+                            <li>You often feel misunderstood.</li>
+                            <li>You're unsure about your future.</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <img src="teen-counselling.png" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                            <p class="text-sm italic text-gray-600">"I realized I didn't have to have my whole life figured out. I just needed someone who listened."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How it helps & Process -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12 mb-24 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-santasa-yellow/20 rounded-bl-full z-0"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">How We Can Work Through This Together?</h3>
+                            <!-- <p class="text-gray-700 mb-4">Counselling isn't about giving you all the answers—it's about helping you understand yourself, navigate life's challenges, and build healthier ways to cope at your own pace.</p> -->
+                            <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li>Understand your emotions.</li>
+                                <li>Build confidence and resilience.</li>
+                                <li>Learn healthy coping skills.</li>
+                                <li>Improve communication.</li>
+                                <li>Develop problem-solving skills.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-santasa-teal">What Your Journey May Look Like</h3>
+                            <div>
+                                <ul class="custom-bullets space-y-3 text-gray-700">
+                                <li><strong>Step 1:</strong> A safe space where you can talk freely.</li>
+                                <li><strong>Step 2:</strong> Understand your thoughts and emotions.</li>
+                                <li><strong>Step 3:</strong> Learn practical ways to manage challenges.</li>
+                                <li><strong>Step 4:</strong> Move forward with confidence.</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Change (Benefits) -->
+                <div class="mb-24">
+                    <h2 class="text-3xl font-heading font-bold text-center text-gray-900 mb-12">Imagine Feeling More Like Yourself Again</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-blue/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-battery-full text-2xl text-santasa-teal"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Greater Peace of Mind</h4>
+                            <p class="text-gray-600">Experience fewer overwhelming thoughts and feel calmer, more present, and better equipped to handle everyday life.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-yellow/50 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-anchor text-2xl text-yellow-600"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Emotional Balance</h4>
+                            <p class="text-gray-600">Build resilience, understand your emotions, and respond to life's ups and downs with greater confidence and clarity.</p>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-2xl text-center">
+                            <div class="w-16 h-16 mx-auto bg-santasa-pink/30 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-heart text-2xl text-pink-500"></i>
+                            </div>
+                            <h4 class="font-bold text-xl mb-3">Healthier Relationships</h4>
+                            <p class="text-gray-600">Strengthen communication, rebuild trust, set healthy boundaries, and connect more deeply with the people who matter most.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="bg-santasa-teal text-white p-8 md:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto mb-24 relative">
+                    <i class="fas fa-quote-left text-white/20 text-6xl absolute top-4 left-4"></i>
+                    <div class="relative z-10">
+                        <p class="text-xl md:text-2xl font-heading italic leading-relaxed mb-8">
+                            "I felt like no one understood what was happening inside my head. The pressure to do well, fit in, and figure out my future became overwhelming. Counselling didn't magically erase my problems—it gave me the tools to handle them. For the first time in a long time, I feel hopeful about who I'm becoming instead of scared of what's next."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl font-bold mr-4">F</div>
+                            <div>
+                                <p class="font-bold">Female, 17</p>
+                                <p class="text-sm text-teal-100">Managing academic pressure & anxiety</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong Ending CTA -->
+                <div class="text-center max-w-3xl mx-auto bg-santasa-yellow/20 p-12 rounded-3xl border border-santasa-yellow/50">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Your Teen Doesn't Have to Face It Alone</h2>
+                    <p class="text-lg text-gray-700 mb-8">
+                        Growing up comes with pressure, uncertainty, and emotional challenges. A safe, judgment-free space can help your teen build confidence, resilience, and healthier ways to navigate life's ups and downs.
+                    </p>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Book Teen Counselling
+                    </button>
+                    <!-- <p class="mt-4 text-sm text-gray-500">Free 15-minute introductory call to see if we're a good fit.</p> -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= ABOUT-PAGE ================= -->
+        <div id="page-about" class="page-section">
+            <!-- Hero Section -->
+                <section class="relative bg-white pt-16 pb-24 lg:pt-32 lg:pb-32 overflow-hidden">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                            <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                                <span class="inline-block py-1 px-3 rounded-full bg-santasa-yellow/40 text-gray-800 text-sm font-semibold tracking-wider uppercase mb-2">A Safe Space For You</span>
+                                <h1 class="text-5xl lg:text-5xl font-heading font-bold text-gray-900 leading-tight">You Don't Have to Face Life's <span class="text-santasa-teal">Challenges Alone</span>
+                                </h1> <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">Life isn't always easy. Some days, you may feel overwhelmed, anxious, emotionally exhausted, or unsure of where to turn. You might be navigating relationship conflicts, parenting struggles, academic pressure, workplace stress, or simply carrying emotions that feel too heavy to manage alone.</p><p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">At Santasa Counselling, we provide a safe, confidential, and non-judgmental space where children, teenagers, adults, couples, parents, and families can feel heard, understood, and supported.</p><p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">Together, we'll work towards greater emotional well-being, healthier relationships, stronger resilience, and a more fulfilling life.</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                        <button onclick="scrollToSection('services-nav')" class="bg-santasa-teal text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">Explore How I Can Help</button>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/2 relative">
+                                <!-- Hero Image Placeholder -->
+                                <div class="relative rounded-2xl overflow-hidden shadow-2xl z-10 border-4 border-white"><img src="3.jpg" alt="Calm environment for counselling" class="w-full h-auto object-cover aspect-[4/3]"></div>
+                                    <!-- Decorative elements behind image -->
+                                        <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-santasa-pink rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-pulse"></div>
+                                    <div class="absolute -top-6 -right-6 w-48 h-48 bg-santasa-blue rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-pulse" style="animation-delay: 1s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- How Can We Help You? -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div class="order-2 md:order-1 relative">
+                                <img src="4.jpg" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500"><p class="text-sm italic text-gray-600">"My child smiles more, talks more, and finally feels safe expressing their feelings."</p>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">How Can We Help You?</h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                                    <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                                    <li>Emotional Wellness</li>
+                                    <li>Anxiety and overwhelming thoughts</li>
+                                    <li>Stress and emotional burnout</li>
+                                    <li>Parenting challenges</li>
+                                    <li>Relationship conflicts</li>
+                                    <li>Academic or career pressure</li>
+                                    <li>Family misunderstandings</li>
+                                    <li>Low confidence or self-esteem</li>
+                                    <li>Life transitions and personal struggles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <!-- Why Choose Santasa Counselling? -->
+                        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div>
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Why Choose Santasa Counselling?</h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700"><p>Because healing begins when you feel truly heard.
+                                At Santasa Counselling, every session is built around you—your experiences, your emotions, and your goals. You'll find:</p>
+                                    <li>A safe and confidential environment</li>
+                                    <li>Compassionate, non-judgmental support</li>
+                                    <li>Personalised guidance tailored to your needs</li>
+                                    <li>Practical tools for everyday life</li>
+                                    <li>Evidence-informed counselling techniques</li>
+                                    <li>Support for individuals, couples, children, teenagers, and families</li>
+                                </ul>
+                            </div>
+                            <div class="relative">
+                                <img src="8.jpg" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                                    <p class="text-sm italic text-gray-600">"I stopped trying to be a perfect parent. Learning to truly understand my child changed everything."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Meet Your Counsellor -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div class="order-2 md:order-1 relative">
+                                <img src="meet-your-counsellor.jpeg" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500">
+                                    <p class="text-sm italic text-gray-600">"My child smiles more, talks more, and finally feels safe expressing their feelings."</p>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">Meet Your Counsellor</h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                                    <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                                    <p><strong>Guidance Every Step of the Way</strong></p>
+                                    <p>Behind Santasa Counselling is <strong>Keerthi B Nadig</strong>, a passionate Emotional Wellness Counsellor dedicated to helping people navigate life's challenges with empathy, respect, and understanding.</p>
+                                    <!-- <p>Her approach combines meaningful conversations with practical, evidence-informed techniques that help individuals and families strengthen relationships, build resilience, and improve emotional well-being.</p>
+                                    <p>Rather than focusing on labels or judgment, Keerthi creates a supportive environment where clients feel comfortable exploring their thoughts, emotions, and experiences at their own pace.</p><p>Because real change begins when people feel genuinely seen, heard, and understood.</p> -->
+                                    <p>She believes every individual has the strength to heal and grow, and she provides a safe, compassionate, and non-judgmental space where you feel heard and supported. Her counselling approach is client-centred and tailored to your needs, working alongside you to understand your emotions, build resilience, and support your personal growth. She has supported children, adolescents, adults, parents, couples, professionals, and families through challenges such as stress, anxiety, relationships, parenting, and life transitions, and clients often describe her as calm, approachable, and empathetic.</p>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qualifications & Professional Background -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div>
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Qualifications & Professional Background</h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700"><p>Keerthi B Nadig is committed to continuous professional development to provide ethical, informed, and compassionate care.</p>
+                                    <li>Bachelor's Degree in Law (BA LLB)</li>
+                                    <li>Advanced Certification in Counselling</li>
+                                    <li>Diploma in Child Psychology</li>
+                                    <li>Certified Emotional Wellness Counsellor</li>
+                                    <li>Speaker</li>
+                                    <li>Author</li>
+                                </ul>
+                            </div>
+                            <div class="relative">
+                                <img src="3.1.jpeg" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                                    <p class="text-sm italic text-gray-600">"I stopped trying to be a perfect parent. Learning to truly understand my child changed everything."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recognition & Community Impact -->
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div class="order-2 md:order-1 relative">
+                                <img src="5.1.jpeg" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500">
+                                    <p class="text-sm italic text-gray-600">"My child smiles more, talks more, and finally feels safe expressing their feelings."</p>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block"><h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">Recognition & Community Impact</h2></h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                                    <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                                    <p>Santasa Counselling is proud to contribute to emotional wellness through counselling, education, and community engagement.</p>
+                                    <p>Featured In:</p>
+                                    <li><a href="https://wonderwomanwednesday.com/journey-as-a-counsellor-at-santasa/"><strong>Wonder Women Wednesday</strong></a></li>
+                                    <li><a href="https://www.instagram.com/reel/DNj2ykbSijC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="><strong>Wonder Women Wednesday × Santasa Counselling</strong></a></li>
+                                    <p>Invited As Chief Guest :</p>
+                                    <li><strong>Bishop Cotton Women's Law College</strong></li>
+                                    <li><a href="https://set.jainuniversity.ac.in/news/ise-launches-bodhi-darpan-club"><strong>Jain University</strong></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Our Approach -->
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                            <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                                <div>
+                                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-yellow pb-2 inline-block">Our Approach</h2>
+                                    <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                                        <p>Every person's story is unique.That's why no two counselling journeys are exactly the same.We believe that meaningful change happens when you feel safe enough to speak openly, understood without judgment, and supported with practical guidance.</p><p>Each session is personalised to your needs and may include evidence-informed approaches such as:</p>
+                                        <li>Cognitive Behavioural Techniques (CBT)</li>
+                                        <li>Solution-Focused Techniques</li>
+                                        <li>Narrative Techniques</li>
+                                        <li>Family-Centred Techniques</li>
+                                        <li>Mindfulness Practices</li>
+                                        <li>Emotional Regulation Tools</li>
+                                        <li>Behavioural Strategies</li>
+                                        <p>Our goal isn't simply to help you manage today's challenges—it's to help you build the confidence, resilience, and emotional well-being to navigate tomorrow's with greater ease.</p>
+                                    </ul>
+                                </div>
+                                <div class="relative">
+                                    <img src="4.jpg" alt="Person looking thoughtful out a window" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-santasa-teal">
+                                        <p class="text-sm italic text-gray-600">"I stopped trying to be a perfect parent. Learning to truly understand my child changed everything."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                    
+
+        <!-- Vision -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+                            <div class="order-2 md:order-1 relative">
+                                <img src="7.1.jpeg" alt="Frustrated parent and child" class="rounded-3xl shadow-xl w-full h-auto object-cover aspect-square">
+                                <div class="absolute -top-6 -left-6 bg-white p-6 rounded-2xl shadow-lg max-w-xs border-l-4 border-pink-500">
+                                    <p class="text-sm italic text-gray-600">"My child smiles more, talks more, and finally feels safe expressing their feelings."</p>
+                                </div>
+                            </div>
+                            <div class="order-1 md:order-2">
+                                <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6 border-b-2 border-santasa-pink pb-2 inline-block">Our Vision</h2>
+                                <ul class="custom-bullets space-y-4 text-lg text-gray-700">
+                                    <style>#page-parent-child ul.custom-bullets li::before { color: #db2777; }</style>
+                                    <p>We envision a world where seeking emotional support is seen as a sign of strength, not weakness.</p>
+                                    <p>At Santasa Counselling, we're committed to helping individuals and families build healthier relationships, understand themselves more deeply, and create lasting emotional well-being through empathy, connection, and compassionate guidance.</p>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- ================= FREE RESOURCES PAGE ================= -->
+        <div id="page-resources" class="page-section">
+            <div class="pt-16 pb-12 bg-white text-center">
+                <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">Free Resources</h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto px-4">Tools and guides you can start using right now to find a little more calm and clarity in your day.</p>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Resource 1 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-santasa-pink/20 flex items-center justify-center relative overflow-hidden">
+                            <i class="fas fa-pen-fancy text-6xl text-pink-500 opacity-50"></i>
+                            <div class="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs font-bold text-pink-500 uppercase">Free Resources</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-900">Free Resources</h3>
+                            <p class="text-gray-600 text-sm mb-4">A practical starter kit with simple strategies to help your family reduce screen time, strengthen emotional connections, and build healthier digital habits.</p>
+                            <!-- <button class="text-pink-500 font-semibold hover:underline flex items-center">
+                                <i class="fa-solid fa-book-atlas mr-2"></i><a href="https://example.com/free-resources" target="_blank">Get Access Now</a>
+                            </button> -->
+                            <button class="text-pink-500 font-semibold hover:underline flex items-center"><i class="fa-solid fa-book-atlas mr-2"></i><a href="The Family Screen Reset Starter Kit.pdf" download class="download-btn">Click here to Download Now</a></button>
+                        </div>
+                    </div>
+
+                    <!-- Resource 2 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-santasa-teal/20 flex items-center justify-center relative overflow-hidden">
+                            <!-- <i class="fas fa-lungs text-6xl text-santasa-teal opacity-50"></i> -->
+                            <i class="fa-solid fa-book-open text-6xl text-santasa-teal opacity-50"></i>
+                            <div class="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs font-bold text-santasa-teal uppercase">E-Book</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-900">Raising Emotinally Healthy Children in the Digital World</h3>
+                            <p class="text-gray-600 text-sm mb-4">Helping parents raise emotionally healthy, resilient children in a rapidly evolving digital world.</p>
+                            <button class="text-santasa-teal font-semibold hover:underline flex items-center">
+                               <i class="fa-solid fa-book-bookmark mr-2"></i><a href="https://play.google.com/store/books/details?id=utrfEQAAQBAJ" target="_blank">Buy Now at Google Play Books</a>   
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Resource 3 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+                        <div class="h-48 bg-santasa-yellow/20 flex items-center justify-center relative overflow-hidden">
+                            <i class="fas fa-book-open text-6xl text-yellow-600 opacity-50"></i>
+                            <div class="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-xs font-bold text-yellow-600 uppercase">E-Book</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-gray-900">Raising Emotinally Healthy Children in the Digital World</h3>
+                            <p class="text-gray-600 text-sm mb-4">Helping parents raise emotionally healthy, resilient children in a rapidly evolving digital world.</p>
+                            <button class="text-yellow-600 font-semibold hover:underline flex items-center">
+                                <i class="fa-solid fa-tablet-screen-button mr-2"></i><a href="https://www.amazon.in/dp/B0H68WQ1ZH?ref=cm_sw_r_ffobk_cp_ud_dp_8J4Y02QDN5QSKXNW6MS2&ref_=cm_sw_r_ffobk_cp_ud_dp_8J4Y02QDN5QSKXNW6MS2&social_share=cm_sw_r_ffobk_cp_ud_dp_8J4Y02QDN5QSKXNW6MS2&bestFormat=true" target="_blank">Buy Now at Amazon Kindle</a>
+                            </button>
+                        </div>
+                    </div>
+ 
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= FAQs PAGE ================= -->
+        <div id="page-faqs" class="page-section">
+            <div class="pt-16 pb-12 bg-santasa-yellow/10 text-center border-b border-santasa-yellow/30">
+                <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto px-4">It's normal to have questions before starting counselling. Here are some of the things people often ask.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="space-y-6">
+                    
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            What is counselling?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Counselling is a professional and confidential process where a trained counsellor works with individuals, couples, or families to explore and address emotional and relational challenges. It offers a safe, non-judgmental space for people to openly share their thoughts, feelings, and concerns. Through active listening, empathy, and supportive techniques, counselling helps foster self-awareness, emotional healing, and personal growth.</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            How can Santasa help?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Santasa Counselling offers an empathetic, non-judgmental approach led by a counsellor qualified in Advanced Counselling and Child Psychology. We provide flexible sessions, both online and in person, to support families, parents, and children in:
+
+<li class="list-disc ml-12">Strengthening family bonds and improving communication.</li>
+<li class="list-disc ml-12">Providing parenting support and effective strategies.</li>
+<li class="list-disc ml-12">Focusing on child development and emotional well-being.</li>
+<li class="list-disc ml-12">Coping with life transitions and managing concerns such as anxiety and stress.</li>
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                           When to choose counselling??
+                        </h3>
+                        <p class="text-gray-700 ml-8">Counselling can be helpful when you feel overwhelmed, stuck, or unsure how to manage life’s challenges on your own. You may consider counselling if you’re experiencing:
+
+<li class="list-disc ml-12">Emotional distress such as anxiety, depression, or anger</li>
+<li class="list-disc ml-12">Relationship difficulties or family conflicts</li>
+<li class="list-disc ml-12">Parenting challenges or ongoing stress</li>
+<li class="list-disc ml-12">Major life transitions like divorce, relocation, or loss</li>
+<li class="list-disc ml-12">Low self-esteem or a lack of confidence</li>
+<li class="list-disc ml-12">Behavioural or emotional changes in children</li>
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            What to expect from counselling?
+                        </h3>
+                        <p class="text-gray-700 ml-8">You can expect a safe, confidential, and non-judgmental space where you are met with genuine empathy and respect. The counselling process includes:
+
+            <li class="list-disc ml-12">Active listening and understanding from your counsellor</li>
+            <li class="list-disc ml-12">A personalised approach tailored to your unique needs</li>
+            <li class="list-disc ml-12">Collaborative goal-setting and clear direction</li>
+            <li class="list-disc ml-12">Learning supportive techniques and practical skills</li>
+            <li class="list-disc ml-12">Gaining self-awareness and deeper insight</li>
+            <li class="list-disc ml-12">Experiencing empowerment and growth toward a healthier, more balanced life</li>
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            Do you offer sessions for individuals, couples, or families?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Yes! We offer sessions for students, parents, individuals, working professionals, couples, and families - both online and in person, in English, Kannada and Hindi. We provide non-clinical support for emotional well-being.
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            How long is a typical counselling session?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Session lengths may vary depending on your individual needs and the type of counselling (individual, family, or child). The exact duration will be discussed and confirmed when you schedule your appointment.
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                            In which languages do you offer support?
+                        </h3>
+                        <p class="text-gray-700 ml-8">We provide support in English, Kannada, and Hindi.
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                           Are the sessions confidential?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Yes, we provide a safe, non-clinical, and confidential space for every client.
+</p>
+                    </div>
+
+                    <!-- FAQ Item -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-start">
+                            <i class="fas fa-question-circle text-santasa-teal mt-1 mr-3"></i>
+                           What is the difference between non-clinical counselling and clinical therapy?
+                        </h3>
+                        <p class="text-gray-700 ml-8">Non-clinical counselling helps you feel better in your everyday life, improve relationships, and grow personally through talks and practical guidance. We support individuals and families in handling life changes, improving communication, managing stress, and building confidence. Unlike clinical treatment, we do not provide diagnosis or medication — our focus is on listening, understanding, and offering helpful strategies.
+</p>
+                    </div>
+
+                </div>
+                
+                <div class="mt-16 text-center">
+                    <p class="text-lg text-gray-700 mb-6">Still have questions? I'm happy to answer them.</p>
+                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-8 py-3 rounded-full font-bold hover:bg-teal-700 transition-all shadow-md">Get in Touch</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CONTACT / FINAL CTA PAGE ================= -->
+        <div id="page-contact" class="page-section">
+            <div class="relative bg-white pt-20 pb-24 overflow-hidden">
+                <!-- Background decorative elements -->
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-santasa-blue/20 blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-santasa-yellow/20 blur-3xl"></div>
+                
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    
+                    <div class="mb-12">
+                        <i class="fas fa-dove text-5xl text-santasa-teal mb-6 opacity-80"></i>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 mb-6 leading-tight">Your story isn't over.<br>This is just a difficult chapter.</h1>
+                        
+                        <p class="text-xl text-gray-700 leading-relaxed mb-8 max-w-2xl mx-auto">
+                            Reaching out for help doesn't mean you are broken. It means you are courageous enough to realize you deserve better than feeling stuck, overwhelmed, or disconnected.
+                        </p>
+                        
+                        <div class="bg-gray-50 border border-gray-100 p-6 md:p-8 rounded-2xl mb-12 shadow-sm text-left max-w-2xl mx-auto">
+                            <h3 class="font-bold text-gray-900 mb-2">What happens next?</h3>
+                            <ol class="list-decimal list-inside text-gray-700 space-y-3">
+                                <li>Send a message on the phone number below or call directly.</li>
+                                <li>We'll schedule a free, no-pressure 15-minute phone consultation.</li>
+                                <li>We'll discuss what you're struggling with and see if my approach feels like a safe fit for you.</li>
+                                <li>If it's a yes, we book your first session and begin the work.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-8 text-gray-600">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-santasa-teal mr-3 text-xl"></i>
+                            <a href="mailto:kb.nadig@gmail.com" class="hover:text-santasa-teal transition-colors">kb.nadig@gmail.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-santasa-teal mr-3 text-xl"></i>
+                            <a href="tel:+1234567890" class="hover:text-santasa-teal transition-colors">9686450568</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-santasa-teal"></i>
+                            <p>Gubbalala, Bangalore, Karnataka</p>
+                        </div>
+                        
+                    </div>
+                    <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-8 text-gray-600">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-laptop-house text-santasa-teal mr-3 text-xl"></i><p>Online & Offline Sessions</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-calendar-check text-santasa-teal mr-3 text-xl"></i><p>Appointments Only | All Days 11 a.m.–7 p.m.</p>
+                        </div>
+                    </div>
+                    <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-8 text-gray-600">
+                        <a href="https://www.instagram.com/santasacounsellingg/" class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-teal-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1AxkZ9Bp8j/" class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-teal-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/keerthi-b-nadig-ab0856178/" class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-teal-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@KeerthiBNadigKeerthi" class="w-10 h-10 rounded-full bg-teal-800 flex items-center justify-center text-teal-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-santasa-dark text-white pt-16 pb-8 border-t-4 border-santasa-teal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <span class="font-heading font-bold text-2xl text-white tracking-wide block mb-1">SANTASA</span>
+                    <span class="block text-xs uppercase tracking-widest text-gray-400 mb-6">Counselling</span>
+                    <p class="text-gray-400 leading-relaxed max-w-sm">
+                        Providing a safe, empathetic space to navigate life's challenges, heal relationships, and rediscover emotional wellness.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-santasa-yellow">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><button onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button></li>
+                        <li><button onclick="navigateTo('emotional-wellness')" class="hover:text-white transition-colors">Emotional Wellness</button></li>
+                        <li><button onclick="navigateTo('parent-child')" class="hover:text-white transition-colors">Parent-Child Counselling</button></li>
+                        <li><button onclick="navigateTo('resources')" class="hover:text-white transition-colors">Free Resources</button></li>
+                        <li><button onclick="navigateTo('faqs')" class="hover:text-white transition-colors">FAQs</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-santasa-blue">Connect</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-santasa-teal"></i>
+                            <span>Bangalore, Karnataka</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-santasa-teal"></i>
+                            <a href="mailto:kb.nadig@gmail.com" class="hover:text-white">kb.nadig@gmail.com</a>
+                        </li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="https://www.instagram.com/santasacounsellingg/" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1AxkZ9Bp8j/" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/keerthi-b-nadig-ab0856178/" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/channel/UCkL5z5X9X9X9X9X9X9X9X9" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-santasa-teal hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Santasa Counselling. All rights reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-4">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation logic for Single Page Application
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
+                setTimeout(() => {
+                    page.style.display = 'none';
+                }, 300); // match transition time
+            });
+
+            // Show selected page
+            setTimeout(() => {
+                const selectedPage = document.getElementById(`page-${pageId}`);
+                if (selectedPage) {
+                    selectedPage.style.display = 'block';
+                    // small delay to allow display:block to apply before opacity transition
+                    setTimeout(() => {
+                        selectedPage.classList.add('active');
+                    }, 50);
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }, 300);
+        }
+
+        // Smooth scroll to specific sections within a page
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                // Offset for fixed header
+                const headerOffset = 80;
+                const elementPosition = section.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: "smooth"
+                });
+            }
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-white/90', 'bg-white/98');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-white/98', 'bg-white/90');
+            }
+        });
+
+        // Initialize display
+        document.getElementById('page-home').style.display = 'block';
+    </script>
+</body>
+</html>
