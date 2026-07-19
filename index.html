@@ -67,6 +67,54 @@
             left: 0;
             top: -0.25rem;
         }
+        /* Floating WhatsApp Button */
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            animation: whatsappFloat 2.5s ease-in-out infinite;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebe5d;
+            transform: scale(1.12);
+            box-shadow: 0 12px 28px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp i {
+            font-size: 2rem;
+        }
+
+        @keyframes whatsappFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Smaller button on mobile */
+        @media (max-width: 768px) {
+            .btn-whatsapp {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .btn-whatsapp i {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-santasa-light text-santasa-dark font-body antialiased relative overflow-x-hidden">
