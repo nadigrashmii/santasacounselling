@@ -111,7 +111,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-santasa-teal focus:outline-none p-2">
+                    <button id="mobile-menu-btn" class="text-gray-100 hover:text-santasa-teal focus:outline-none p-2">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -131,11 +131,10 @@
                 <button onclick="navigateTo('student-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Student Counselling</strong> → Helping Students Thrive Academically & Emotionally</button>
                 <button onclick="navigateTo('teen-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Teen Counselling</strong> → Supporting Teens Through Life's Challenges</button>
                 
-                <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Resources</div>
-                <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">About</div>
-                <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">FAQs</div>
-
-                <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-center px-3 py-3 mt-4 rounded-full text-base font-medium bg-santasa-teal text-white hover:bg-teal-700 shadow-md">Let's Talk</button>
+                <button onclick="navigateTo('resources')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">Resources</button>
+                <button onclick="navigateTo('about')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">About</button>
+                <button onclick="navigateTo('faqs')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">FAQs</button>
+                <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-6 py-2.5 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Let's Talk</button>
             </div>
         </div>
     </nav>
