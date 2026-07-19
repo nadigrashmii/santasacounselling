@@ -159,7 +159,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-santasa-teal focus:outline-none p-2">
+                    <button id="mobile-menu-btn" onclick="closeMobileMenu()">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -169,24 +169,24 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
             <div class="px-4 pt-2 pb-6 space-y-2">
-                <button onclick="navigateTo('home'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Home</button>
+                <button onclick="navigateTo('home'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Home</button>
                 <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">Services</div>
 
-                <button onclick="navigateTo('emotional-wellness'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Emotional Wellness Counselling</strong> → Finding Balance, Confidence & Emotional Well-being</button>
-                <button onclick="navigateTo('relationship-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Relationship Counselling</strong> → Building Stronger, Healthier Relationships</button>
-                <button onclick="navigateTo('parent-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Parent Counselling</strong> → Helping You Raise Happy & Resilient Children</button>
-                <button onclick="navigateTo('child-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Child Counselling</strong> → Helping Children Understand Their Emotions</button>
-                <button onclick="navigateTo('student-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Student Counselling</strong> → Helping Students Thrive Academically & Emotionally</button>
-                <button onclick="navigateTo('teen-counselling'); toggleMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Teen Counselling</strong> → Supporting Teens Through Life's Challenges</button>
-                
+                <button onclick="navigateTo('emotional-wellness'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Emotional Wellness Counselling</strong> → Finding Balance, Confidence & Emotional Well-being</button>
+                <button onclick="navigateTo('relationship-counselling'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Relationship Counselling</strong> → Building Stronger, Healthier Relationships</button>
+                <button onclick="navigateTo('parent-counselling'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Parent Counselling</strong> → Helping You Raise Happy & Resilient Children</button>
+                <button onclick="navigateTo('child-counselling'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Child Counselling</strong> → Helping Children Understand Their Emotions</button>
+                <button onclick="navigateTo('student-counselling'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Student Counselling</strong> → Helping Students Thrive Academically & Emotionally</button>
+                <button onclick="navigateTo('teen-counselling'); closeMobileMenu()" class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"><strong>Teen Counselling</strong> → Supporting Teens Through Life's Challenges</button>
+
                 <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">
-                    <button onclick="navigateTo('resources')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">Resources</button></div>
+                    <button onclick="navigateTo('resources'); closeMobileMenu()" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">Resources</button></div>
                 <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100">    
-                    <button onclick="navigateTo('about')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">About</button></div>
+                    <button onclick="navigateTo('about'); closeMobileMenu()" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">About</button></div>
                 <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"> 
-                    <button onclick="navigateTo('faqs')" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">FAQs</button></div>
+                    <button onclick="navigateTo('faqs'); closeMobileMenu()" class="text-gray-700 hover:text-santasa-teal font-medium transition-colors">FAQs</button></div>
                 <div class="px-3 py-2 font-heading font-semibold text-gray-900 border-b border-gray-100"> 
-                    <button onclick="navigateTo('contact')" class="bg-santasa-teal text-white px-6 py-2.5 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Let's Talk</button></div>
+                    <button onclick="navigateTo('contact'); closeMobileMenu()" class="bg-santasa-teal text-white px-6 py-2.5 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Let's Talk</button></div>
             </div>
         </div>
     </nav>
@@ -1623,11 +1623,13 @@
         mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
         function toggleMobileMenu() {
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-            } else {
-                mobileMenu.classList.add('hidden');
-            }
+            const mobileMenu = document.getElementById("mobile-menu");
+            mobileMenu.classList.toggle("hidden");
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById("mobile-menu");
+            mobileMenu.classList.add("hidden");
         }
         
         // Add scroll effect to navbar
